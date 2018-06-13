@@ -13,7 +13,7 @@ menu_miscellaneous_help ()
     echo
 
     text_yellow "    Create Commander Alias (A)"
-    text_white "    lets you create alias so you can start Commander by inputting “commander” instead of “bash ./commander.sh” from anywhere within your."
+    text_white "    lets you create alias so you can start Commander by inputting “commander” instead of “bash ./commander.sh”."
     echo
 
     text_yellow "    Show Help (H)"
