@@ -1,19 +1,17 @@
-# ARK Core - Commander
+# ARK Core Commander
 
 <p align="center">
-    <img src="https://github.com/ArkEcosystem/ARK-Core-Commander/blob/master/banner.png" />
+    <img src="https://github.com/ArkEcosystem/core-commander/blob/master/banner.png" />
 </p>
 
-> A [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) script to manage ARK Core.
-
-[![Build Status](https://img.shields.io/travis/ArkEcosystem/ARK-Core-Commander/master.svg?style=flat-square)](https://travis-ci.org/ArkEcosystem/ARK-Core-Commander)
-[![Latest Version](https://img.shields.io/github/release/ArkEcosystem/ARK-Core-Commander.svg?style=flat-square)](https://github.com/ArkEcosystem/ARK-Core-Commander/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> A shell script to easily setup, configure and maintain [ARK Core](https://github.com/ArkEcosystem/core).
 
 ## Installation
 
 ```bash
-...
+git clone https://github.com/ArkEcosystem/core-commander
+cd core-commander
+bash commander.sh
 ```
 
 ## Security
@@ -23,7 +21,8 @@ If you discover a security vulnerability within this package, please send an e-m
 ## Credits
 
 - [Brian Faust](https://github.com/faustbrian)
-- [All Contributors](../../../../contributors)
+- [Alex Barnsley](https://github.com/alexbarnsley)
+- [All Contributors](./contributors)
 
 ## License
 
