@@ -5,6 +5,12 @@ commander_configure_repo ()
     info "Current: $CORE_REPO"
     read -p "Please enter the core repository you would like to use: " choice
 
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
+
     __commander_configure "$choice" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 
     if [[ -d "$CORE_DIR" ]]; then
@@ -30,6 +36,12 @@ commander_configure_core_directory ()
     info "Current: $CORE_DIR"
     read -p "Please enter the core directory you would like to use: " choice
 
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
+
     __commander_configure "$CORE_REPO" "$choice" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 
     if [[ -d "$CORE_DIR" ]]; then
@@ -51,6 +63,12 @@ commander_configure_data_directory ()
     info "Current: $CORE_DATA"
     read -p "Please enter the core data directory you would like to use: " choice
 
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
+
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$choice" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
 
@@ -58,6 +76,12 @@ commander_configure_config_directory ()
 {
     info "Current: $CORE_CONFIG"
     read -p "Please enter the core config directory you would like to use: " choice
+
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
 
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$choice" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
@@ -67,6 +91,12 @@ commander_configure_token ()
     info "Current: $CORE_TOKEN"
     read -p "Please enter the token you would like to use: " choice
 
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
+
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$choice" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
 
@@ -75,6 +105,12 @@ commander_configure_token_network ()
     info "Current: $CORE_NETWORK"
     read -p "Please enter the network you would like to use: " choice
 
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
+
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$choice" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
 
@@ -82,6 +118,12 @@ commander_configure_explorer_repo ()
 {
     info "Current: $EXPLORER_REPO"
     read -p "Please enter the explorer repository you would like to use: " choice
+
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
 
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$choice" "$EXPLORER_DIR"
 
@@ -107,6 +149,12 @@ commander_configure_explorer_directory ()
 
     info "Current: $EXPLORER_DIR"
     read -p "Please enter the explorer directory you would like to use: " choice
+
+    if [[ -z "$choice" ]]; then
+        error "You have entered an empty value. Please try again."
+
+        return
+    fi
 
     __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$choice"
 
