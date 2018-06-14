@@ -6,18 +6,18 @@ explorer_install ()
 
     heading "Installing ARK Explorer..."
 
-    sudo mkdir "$EXPLORER_DIR" >> "$commander_log" 2>&1
-    sudo chown "$USER":"$USER" "$EXPLORER_DIR" >> "$commander_log" 2>&1
+    sudo mkdir "$EXPLORER_DIR" | tee -a "$commander_log"
+    sudo chown "$USER":"$USER" "$EXPLORER_DIR" | tee -a "$commander_log"
 
-    git clone "$EXPLORER_REPO" "$EXPLORER_DIR" >> "$commander_log" 2>&1
+    git clone "$EXPLORER_REPO" "$EXPLORER_DIR" | tee -a "$commander_log"
     cd "$EXPLORER_DIR"
 
     info "Installing dependencies..."
-    yarn install >> "$commander_log" 2>&1
+    yarn install | tee -a "$commander_log"
     success "Installed dependencies!"
 
     info "Building..."
-    yarn build:"$CORE_NETWORK" >> "$commander_log" 2>&1
+    yarn build:"$CORE_NETWORK" | tee -a "$commander_log"
     success "Building!"
 
     success "Installed ARK Explorer!"
@@ -58,8 +58,8 @@ explorer_update ()
             explorer_stop
 
             heading "Starting Update..."
-            git reset --hard >> "$commander_log" 2>&1
-            git pull >> "$commander_log" 2>&1
+            git reset --hard | tee -a "$commander_log"
+            git pull | tee -a "$commander_log"
             success "Update OK!"
 
             explorer_start

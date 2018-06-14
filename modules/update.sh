@@ -18,8 +18,8 @@ commander_update ()
 
         if [[ "$choice" =~ ^(yes|y|Y) ]]; then
             heading "Starting Update..."
-            git reset --hard >> "$commander_log" 2>&1
-            git pull >> "$commander_log" 2>&1
+            git reset --hard | tee -a "$commander_log"
+            git pull | tee -a "$commander_log"
             success "Update OK!"
 
             STATUS_COMMANDER_UPDATE="No"
