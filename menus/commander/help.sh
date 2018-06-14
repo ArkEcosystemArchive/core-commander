@@ -13,35 +13,35 @@ menu_manage_commander_help ()
     echo
 
     text_yellow "    Configure Core Data Directory (D)"
-    text_white "    lets you configure data directory (where things like database and logs go)."
+    text_white "    lets you configure the data directory (where things like the database and logs go)."
     echo
 
     text_yellow "    Configure Core Config Directory (C)"
-    text_white "    lets you configure config directory of your configuration files."
+    text_white "    lets you configure the config directory (where your configuration files go)."
     echo
 
     text_yellow "    Configure Token (T)"
-    text_white "    lets you configure different token (ARK by default)."
+    text_white "    lets you configure a different custom token (ARK by default)."
     echo
 
     text_yellow "    Configure Token Network (N)"
-    text_white "    lets you configure different token network (testnet by default)."
+    text_white "    lets you configure a different custom token network (devnet by default)."
     echo
 
     text_yellow "    Configure Explorer Repository (S)"
-    text_white "    you can change core repository path with different Github repo (if you want to pull Explorer code from custom path)."
+    text_white "    you can change the Explorer repository path with a different Github repo (if you want to pull Explorer code from a custom repo)."
     echo
 
     text_yellow "    Configure Explorer Directory (E)"
-    text_white "    lets you configure directory explorer is installed into when you do ARK explorer installation (can change before you start explorer installation)."
+    text_white "    lets you configure the directory where the Explorer is installed into when you do an ARK Explorer installation (you can change this before you start the explorer installation)."
     echo
 
     text_yellow "    Show Help (H)"
-    text_white "    opens help file where all this information is available."
+    text_white "    opens the help file where all this information is available."
 
     divider
 
-    text_blue "    For more information head over to https://arkdocs.readme.io/"
+    text_blue "    For more information head on over to https://arkdocs.readme.io/"
     echo
 
     press_to_continue
