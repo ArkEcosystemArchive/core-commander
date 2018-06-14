@@ -15,9 +15,9 @@ commander_configure_repo ()
         relay_stop
 
         cd "$CORE_DIR"
-        git reset --hard >> "$commander_config"
-        git remote set-url origin "$CORE_REPO" >> "$commander_config"
-        git pull >> "$commander_config"
+        git reset --hard | tee -a "$commander_log"
+        git remote set-url origin "$CORE_REPO" | tee -a "$commander_log"
+        git pull | tee -a "$commander_log"
 
         relay_start
     fi
@@ -93,9 +93,9 @@ commander_configure_explorer_repo ()
         explorer_stop
 
         cd "$EXPLORER_DIR"
-        git reset --hard >> "$commander_config"
-        git remote set-url origin "$EXPLORER_REPO" >> "$commander_config"
-        git pull >> "$commander_config"
+        git reset --hard | tee -a "$commander_log"
+        git remote set-url origin "$EXPLORER_REPO" | tee -a "$commander_log"
+        git pull | tee -a "$commander_log"
 
         explorer_start
     fi
