@@ -5,7 +5,7 @@ menu_manage_forger_help ()
     ascii
 
     text_yellow "    Stop Forger (K)"
-    text_white "    stops ARK relay node process (shown only if forger node is running)."
+    text_white "    stops ARK forger node process (shown only if forger node is running)."
     echo
 
     text_yellow "    Start Forger (S)"
@@ -21,7 +21,7 @@ menu_manage_forger_help ()
     echo
 
     text_yellow "    Show Log (L)"
-    text_white "    shows PM2 forger node process log(shown only if forger node is not running)."
+    text_white "    shows PM2 forger node process log (shown only if forger node is not running)."
     echo
 
     text_yellow "    Show Help (H)"
