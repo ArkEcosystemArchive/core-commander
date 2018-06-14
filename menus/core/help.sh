@@ -23,7 +23,7 @@ menu_manage_core_help ()
 
     divider
 
-    text_blue "    For more information head over to https://arkdocs.readme.io/"
+    text_blue "    For more information head on over to https://arkdocs.readme.io/"
     echo
 
     press_to_continue
