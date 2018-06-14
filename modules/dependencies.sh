@@ -79,7 +79,7 @@ install_nodejs_dependencies ()
 
         heading "Installing node.js dependencies..."
 
-        sh -c "npm install -g $TO_INSTALL" >> "$commander_log" 2>&1
+        sh -c "sudo npm install -g $TO_INSTALL" >> "$commander_log" 2>&1
 
         success "Installed node.js dependencies!"
     fi
