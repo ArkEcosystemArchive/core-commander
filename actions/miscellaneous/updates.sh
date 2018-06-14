@@ -13,7 +13,7 @@ miscellaneous_install_updates ()
     if [[ "$available_updates" == 0 ]]; then
         STATUS_SYSTEM_UPDATE="No"
 
-        success "There are no updates available."
+        success "There are no system updates available."
     else
         STATUS_SYSTEM_UPDATE="Yes"
 
