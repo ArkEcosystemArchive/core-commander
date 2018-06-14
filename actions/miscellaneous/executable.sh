@@ -2,9 +2,9 @@
 
 miscellaneous_commander_executable()
 {
-    heading "Installing executable..."
+    heading "Making Commander executable..."
 
     chmod +x "${commander_dir}/commander.sh"
 
-    success "Installation complete!"
+    success "Operation complete!"
 }

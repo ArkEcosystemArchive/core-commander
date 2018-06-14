@@ -6,7 +6,7 @@ miscellaneous_install_updates ()
 
     heading "Checking for system updates..."
 
-    sudo apt-get update >> "$commander_log" 2>&1
+    sudo apt-get update | tee -a "$commander_log"
     available_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 1)
     security_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 2)
 
@@ -26,10 +26,11 @@ miscellaneous_install_updates ()
 
             heading "Updating the system..."
 
-            sudo apt-get upgrade -yqq >> "$commander_log" 2>&1
-            sudo apt-get dist-upgrade -yq >> "$commander_log" 2>&1
-            sudo apt-get autoremove -yyq >> "$commander_log" 2>&1
-            sudo apt-get autoclean -yq >> "$commander_log" 2>&1
+            sudo apt-get update | tee -a "$commander_log"
+            sudo apt-get upgrade -yqq | tee -a "$commander_log"
+            sudo apt-get dist-upgrade -yq | tee -a "$commander_log"
+            sudo apt-get autoremove -yyq | tee -a "$commander_log"
+            sudo apt-get autoclean -yq | tee -a "$commander_log"
 
             success "All system dependencies have been updated! The system will restart now."
 

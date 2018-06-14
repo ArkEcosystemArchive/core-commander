@@ -14,6 +14,10 @@ cd core-commander
 bash commander.sh
 ```
 
+## Contributing
+
+Please see [Contributing Guidelines](https://docs.ark.io/docs/contributing) for details.
+
 ## Security
 
 If you discover a security vulnerability within this package, please send an e-mail to security@ark.io. All security vulnerabilities will be promptly addressed.
@@ -22,7 +26,7 @@ If you discover a security vulnerability within this package, please send an e-m
 
 - [Brian Faust](https://github.com/faustbrian)
 - [Alex Barnsley](https://github.com/alexbarnsley)
-- [All Contributors](./contributors)
+- [All Contributors](https://github.com/ArkEcosystem/core-commander/graphs/contributors)
 
 ## License
 

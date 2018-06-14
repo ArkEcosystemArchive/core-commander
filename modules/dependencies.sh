@@ -23,8 +23,8 @@ install_base_dependencies ()
 {
     heading "Installing system dependencies..."
 
-    sudo apt-get update >> "$commander_log" 2>&1
-    sudo apt-get install -y git curl >> "$commander_log" 2>&1
+    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get install -y git curl | tee -a "$commander_log"
 
     nodejs_install
 
@@ -49,7 +49,7 @@ install_program_dependencies ()
 
         heading "Installing program dependencies..."
 
-        sudo sh -c "sudo apt-get install $TO_INSTALL -y" >> "$commander_log" 2>&1
+        sudo sh -c "sudo apt-get install $TO_INSTALL -y" | tee -a "$commander_log"
 
         success "Program dependencies Installed!"
     fi
@@ -79,7 +79,7 @@ install_nodejs_dependencies ()
 
         heading "Installing node.js dependencies..."
 
-        sh -c "npm install -g $TO_INSTALL" >> "$commander_log" 2>&1
+        sh -c "sudo npm install -g $TO_INSTALL" | tee -a "$commander_log"
 
         success "Installed node.js dependencies!"
     fi
@@ -91,10 +91,11 @@ install_system_updates ()
 {
     heading "Installing system updates..."
 
-    sudo apt-get upgrade -yqq >> "$commander_log" 2>&1
-    sudo apt-get dist-upgrade -yq >> "$commander_log" 2>&1
-    sudo apt-get autoremove -yyq >> "$commander_log" 2>&1
-    sudo apt-get autoclean -yq >> "$commander_log" 2>&1
+    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get upgrade -yqq | tee -a "$commander_log"
+    sudo apt-get dist-upgrade -yq | tee -a "$commander_log"
+    sudo apt-get autoremove -yyq | tee -a "$commander_log"
+    sudo apt-get autoclean -yq | tee -a "$commander_log"
 
     success "Installed system updates!"
 }

@@ -4,7 +4,7 @@ ntp_start ()
 {
     heading "Starting NTP..."
 
-    sudo systemctl start ntp >> "$commander_log" 2>&1
+    sudo systemctl start ntp | tee -a "$commander_log"
 
     ntp_status
 
@@ -15,7 +15,7 @@ ntp_stop ()
 {
     heading "Stopping NTP..."
 
-    sudo systemctl stop ntp >> "$commander_log" 2>&1
+    sudo systemctl stop ntp | tee -a "$commander_log"
 
     ntp_status
 
@@ -26,7 +26,7 @@ ntp_restart ()
 {
     heading "Restarting NTP..."
 
-    sudo systemctl restart ntp >> "$commander_log" 2>&1
+    sudo systemctl restart ntp | tee -a "$commander_log"
 
     ntp_status
 
@@ -44,9 +44,9 @@ ntp_install ()
         if [[ "$STATUS_NTP" = "Off" ]]; then
             heading "Installing NTP..."
 
-            sudo apt-get install ntp -yyq >> "$commander_log" 2>&1
+            sudo apt-get install ntp -yyq | tee -a "$commander_log"
             ntp_stop
-            sudo ntpd -gq >> "$commander_log" 2>&1
+            sudo ntpd -gq | tee -a "$commander_log"
             wait_to_continue
             ntp_start
             wait_to_continue

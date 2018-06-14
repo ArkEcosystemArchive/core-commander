@@ -7,7 +7,7 @@ menu_manage_core_help ()
     divider
 
     text_yellow "    Update ARK (U)"
-    text_white "    update ARK core if new version is available."
+    text_white "    update ARK core if a new version is available."
     echo
 
     text_yellow "    Uninstall ARK (P)"
@@ -19,11 +19,11 @@ menu_manage_core_help ()
     echo
 
     text_yellow "    Show Help (H)"
-    text_white "    opens help file where all this information is available."
+    text_white "    opens the help file where all this information is available."
 
     divider
 
-    text_blue "    For more information head over to https://arkdocs.readme.io/"
+    text_blue "    For more information head on over to https://docs.ark.io/"
     echo
 
     press_to_continue
