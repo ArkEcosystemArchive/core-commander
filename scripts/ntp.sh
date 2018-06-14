@@ -4,7 +4,7 @@ ntp_start ()
 {
     heading "Starting NTP..."
 
-    sudo systemctl start ntp | tee -a "$commander_log"
+    sudo systemctl start ntp >> "$commander_log" 2>&1
 
     ntp_status
 
@@ -15,7 +15,7 @@ ntp_stop ()
 {
     heading "Stopping NTP..."
 
-    sudo systemctl stop ntp | tee -a "$commander_log"
+    sudo systemctl stop ntp >> "$commander_log" 2>&1
 
     ntp_status
 
@@ -26,7 +26,7 @@ ntp_restart ()
 {
     heading "Restarting NTP..."
 
-    sudo systemctl restart ntp | tee -a "$commander_log"
+    sudo systemctl restart ntp >> "$commander_log" 2>&1
 
     ntp_status
 

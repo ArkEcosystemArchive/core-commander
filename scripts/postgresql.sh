@@ -4,7 +4,7 @@ pgsql_start ()
 {
     heading "Starting PostgreSQL..."
 
-    sudo systemctl start postgresql | tee -a "$commander_log"
+    sudo systemctl start postgresql >> "$commander_log" 2>&1
 
     pgsql_status
 
@@ -15,7 +15,7 @@ pgsql_stop ()
 {
     heading "Stopping PostgreSQL..."
 
-    sudo systemctl stop postgresql | tee -a "$commander_log"
+    sudo systemctl stop postgresql >> "$commander_log" 2>&1
 
     pgsql_status
 
@@ -26,7 +26,7 @@ pgsql_restart ()
 {
     heading "Restarting PostgreSQL..."
 
-    sudo systemctl restart postgresql | tee -a "$commander_log"
+    sudo systemctl restart postgresql >> "$commander_log" 2>&1
 
     pgsql_status
 

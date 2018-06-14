@@ -6,8 +6,8 @@ explorer_install ()
 
     heading "Installing ARK Explorer..."
 
-    sudo mkdir "$EXPLORER_DIR" | tee -a "$commander_log"
-    sudo chown "$USER":"$USER" "$EXPLORER_DIR" | tee -a "$commander_log"
+    sudo mkdir "$EXPLORER_DIR">> "$commander_log" 2>&1
+    sudo chown "$USER":"$USER" "$EXPLORER_DIR">> "$commander_log" 2>&1
 
     git clone "$EXPLORER_REPO" "$EXPLORER_DIR" | tee -a "$commander_log"
     cd "$EXPLORER_DIR"
