@@ -22,16 +22,29 @@ setup_environment ()
         install_nodejs_dependencies
         install_system_updates
 
+        # create ~/.commander
         touch "$commander_config"
 
-        echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config"
-        echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config"
-        echo "CORE_DATA=${HOME}/.ark" >> "$commander_config"
-        echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config"
-        echo "CORE_TOKEN=ark" >> "$commander_config"
-        echo "CORE_NETWORK=devnet" >> "$commander_config"
-        echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config"
-        echo "EXPLORER_DIR=${HOME}/ark-explorer" >> "$commander_config"
+        echo "CORE_REPO=https://github.com/ArkEcosystem/core" | tee -a "$commander_log"
+        echo "CORE_DIR=${HOME}/ark-core" | tee -a "$commander_log"
+        echo "CORE_DATA=${HOME}/.ark" | tee -a "$commander_log"
+        echo "CORE_CONFIG=${HOME}/.ark/config" | tee -a "$commander_log"
+        echo "CORE_TOKEN=ark" | tee -a "$commander_log"
+        echo "CORE_NETWORK=devnet" | tee -a "$commander_log"
+        echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" | tee -a "$commander_log"
+        echo "EXPLORER_DIR=${HOME}/ark-explorer" | tee -a "$commander_log"
+
+        . "$commander_config"
+
+        # create ~/.ark/.env
+        mkdir "${HOME}/.ark"
+        local envFile="${HOME}/.ark/.env"
+        touch "$envFile"
+
+        echo "ARK_DB_HOST=localhost" | tee -a "$envFile"
+        echo "ARK_DB_USERNAME=ark" | tee -a "$envFile"
+        echo "ARK_DB_PASSWORD=password" | tee -a "$envFile"
+        echo "ARK_DB_DATABASE=ark_devnet" | tee -a "$envFile"
 
         success "All system dependencies have been installed! The system will restart now."
 
