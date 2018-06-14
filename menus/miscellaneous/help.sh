@@ -21,7 +21,7 @@ menu_miscellaneous_help ()
 
     divider
 
-    text_blue "    For more information head on over to https://arkdocs.readme.io/"
+    text_blue "    For more information head on over to https://docs.ark.io/"
     echo
 
     press_to_continue
