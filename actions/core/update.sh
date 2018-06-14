@@ -18,7 +18,7 @@ core_update ()
 
         read -p "An update is available for ARK Core, do you want to install it? [Y/n] : " choice
 
-        if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             forger_stop
             relay_stop
 
