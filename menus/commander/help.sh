@@ -5,7 +5,7 @@ menu_manage_commander_help ()
     ascii
 
     text_yellow "    Configure Core Repository (R)"
-    text_white "    you can change core repository path with different Github repo (if you want to pull Core code from custom path)."
+    text_white "    you can change the core repository path with a different Github repo (if you want to pull Core code from a custom path)."
     echo
 
     text_yellow "    Configure Core Directory (A)"
