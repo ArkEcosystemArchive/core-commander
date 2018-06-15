@@ -41,6 +41,11 @@ redis_install ()
     sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get -y install redis-server | tee -a "$commander_log"
 
+    if [[ ! -e /etc/rc.local ]]; then
+        touch /etc/rc.local
+        chmod +x /etc/rc.local
+    fi
+
     sudo sed -i '/exit 0/iecho never > /sys/kernel/mm/transparent_hugepage/enabled\n' /etc/rc.local
     (echo "vm.overcommit_memory=1" | sudo tee -a /etc/sysctl.conf) | tee -a "$commander_log"
     (echo "net.core.somaxconn=65535" | sudo tee -a /etc/sysctl.conf) | tee -a "$commander_log"
