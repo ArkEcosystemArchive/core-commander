@@ -37,8 +37,8 @@ pgsql_install ()
 {
     heading "Installing PostgreSQL..."
 
-    (sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -s -c)-pgdg main") | tee -a "$commander_log"
     (sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -) | tee -a "$commander_log"
+    (sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -s -c)-pgdg main") | tee -a "$commander_log"
 
     sudo apt-get update | tee -a "$commander_log"
     sudo apt-get install -y postgresql-10 | tee -a "$commander_log"
