@@ -38,7 +38,7 @@ redis_install ()
     heading "Installing Redis..."
 
     yes "" | sudo add-apt-repository ppa:chris-lea/redis-server | tee -a "$commander_log"
-    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get -y install redis-server | tee -a "$commander_log"
 
     sudo sed -i '/exit 0/iecho never > /sys/kernel/mm/transparent_hugepage/enabled\n' /etc/rc.local

@@ -23,7 +23,7 @@ install_base_dependencies ()
 {
     heading "Installing system dependencies..."
 
-    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get install -y git curl | tee -a "$commander_log"
 
     nodejs_install
@@ -91,7 +91,7 @@ install_system_updates ()
 {
     heading "Installing system updates..."
 
-    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get upgrade -yqq | tee -a "$commander_log"
     sudo apt-get dist-upgrade -yq | tee -a "$commander_log"
     sudo apt-get autoremove -yyq | tee -a "$commander_log"

@@ -6,7 +6,7 @@ miscellaneous_install_updates ()
 
     heading "Checking for system updates..."
 
-    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get update >> "$commander_log" 2>&1
     available_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 1)
     security_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 2)
 
@@ -26,7 +26,7 @@ miscellaneous_install_updates ()
 
             heading "Updating the system..."
 
-            sudo apt-get update | tee -a "$commander_log"
+            sudo apt-get update >> "$commander_log" 2>&1
             sudo apt-get upgrade -yqq | tee -a "$commander_log"
             sudo apt-get dist-upgrade -yq | tee -a "$commander_log"
             sudo apt-get autoremove -yyq | tee -a "$commander_log"
