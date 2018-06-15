@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+setup_environment_file ()
+{
+    if [[ ! -e "${CORE_DATA}/.env" ]]; then
+        mkdir "${HOME}/.ark"
+        local envFile="${CORE_DATA}/.env"
+        touch "$envFile"
+
+        echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
+        echo "ARK_DB_USERNAME=ark" >> "$envFile" 2>&1
+        echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
+        echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile" 2>&1
+    fi
+
+    . "${CORE_DATA}/.env"
+}
+
 setup_environment ()
 {
     sudo echo "Requesting sudo permissions for $USER"
@@ -37,14 +53,7 @@ setup_environment ()
         . "$commander_config"
 
         # create ~/.ark/.env
-        mkdir "${HOME}/.ark"
-        local envFile="${HOME}/.ark/.env"
-        touch "$envFile"
-
-        echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
-        echo "ARK_DB_USERNAME=ark" >> "$envFile" 2>&1
-        echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
-        echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile" 2>&1
+        setup_environment_file
 
         success "All system dependencies have been installed! The system will restart now."
 
@@ -55,6 +64,7 @@ setup_environment ()
 
     if [[ -e "$commander_config" ]]; then
         . "$commander_config"
-        . "${CORE_DATA}/.env"
+
+        setup_environment_file
     fi
 }
