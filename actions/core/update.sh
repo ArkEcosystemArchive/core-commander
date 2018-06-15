@@ -6,6 +6,8 @@ core_update ()
 
     cd "$CORE_DIR"
 
+    git fetch
+
     local remote_version=$(git rev-parse origin/master)
     local local_version=$(git rev-parse HEAD)
 

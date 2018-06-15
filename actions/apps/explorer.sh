@@ -42,6 +42,8 @@ explorer_update ()
 
     cd "$EXPLORER_DIR"
 
+    git fetch
+
     local remote_version=$(git rev-parse origin/master)
     local local_version=$(git rev-parse HEAD)
 
