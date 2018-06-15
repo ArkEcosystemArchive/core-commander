@@ -42,8 +42,8 @@ redis_install ()
     sudo apt-get -y install redis-server | tee -a "$commander_log"
 
     if [[ ! -e /etc/rc.local ]]; then
-        touch /etc/rc.local
-        chmod +x /etc/rc.local
+        sudo sh -c "touch /etc/rc.local"
+        sudo sh -c "chmod +x /etc/rc.local"
     fi
 
     sudo sed -i '/exit 0/iecho never > /sys/kernel/mm/transparent_hugepage/enabled\n' /etc/rc.local
