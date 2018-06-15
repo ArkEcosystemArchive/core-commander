@@ -6,9 +6,14 @@ menu_manage_core ()
 
     forger_status
 
-    text_white "    U. Update ARK"
-    text_white "    P. Uninstall ARK"
-    text_white "    C. Configure ARK"
+    text_white "    U. Update ARK Core"
+    text_white "    P. Uninstall ARK Core"
+    text_white "    C. Configure ARK Core"
+
+    divider
+
+    text_white "    D. Configure Database"
+    text_white "    A. Configure Hosts & Ports"
 
     divider
 
