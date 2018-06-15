@@ -107,10 +107,10 @@ __core_configure_database ()
     rm "$envFile"
     touch "$envFile"
 
-    read -p "Please enter your database host [localhost]: " inputHost
-    read -p "Please enter your database host [ark]: " inputUsername
-    read -p "Please enter your database host [password]: " inputPassword
-    read -p "Please enter your database host [ark_${CORE_NETWORK}]: " inputDatabase
+    read -p "Enter the database host, or press ENTER for the default [localhost]: " inputHost
+    read -p "Enter the database username, or press ENTER for the default [ark]: " inputUsername
+    read -p "Enter the database password, or press ENTER for the default [password]: " inputPassword
+    read -p "Enter the database name, or press ENTER for the default [ark_${CORE_NETWORK}]: " inputDatabase
 
     if [[ -z "$inputHost" ]]; then
         echo "ARK_DB_HOST=$ARK_DB_HOST" >> "$envFile" 2>&1
