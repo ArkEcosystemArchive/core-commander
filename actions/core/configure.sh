@@ -35,7 +35,7 @@ core_configure ()
     if [[ "$configured" = true ]]; then
         read -p "ARK Core has been configured, would you like to start the relay? [Y/n] : " choice
 
-        if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             relay_start
         fi
     fi

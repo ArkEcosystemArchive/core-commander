@@ -13,7 +13,7 @@ miscellaneous_install_updates ()
     if [[ "$available_updates" == 0 ]]; then
         STATUS_SYSTEM_UPDATE="No"
 
-        success "There are no updates available."
+        success "There are no system updates available."
     else
         STATUS_SYSTEM_UPDATE="Yes"
 
@@ -21,7 +21,7 @@ miscellaneous_install_updates ()
 
         read -p "Do you want to update and restart your system now? [Y/n] : " choice
 
-        if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             STATUS_SYSTEM_UPDATE="No"
 
             heading "Updating the system..."

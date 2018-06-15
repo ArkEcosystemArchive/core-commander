@@ -84,7 +84,7 @@ forger_configure ()
 
     read -p "Would you like to use secure bip38 encryption? [Y/n] : " choice
 
-    if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+    if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
         __forger_configure_bip38
     else
         __forger_configure_plain
@@ -105,7 +105,7 @@ __forger_configure_plain ()
     else
         read -p "The forger has been configured, would you like to start the forger? [Y/n] : " choice
 
-        if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             forger_start
         fi
     fi
@@ -129,7 +129,7 @@ __forger_configure_bip38 ()
     else
         read -p "The forger has been configured, would you like to start the forger? [Y/n] : " choice
 
-        if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             forger_start
         fi
     fi
