@@ -112,7 +112,11 @@ __core_configure_commander ()
 
 __core_configure_environment ()
 {
+    heading "Creating Environment configuration..."
+
     local envFile="${CORE_DATA}/.env"
+
+    touch "$envFile"
 
     echo "ARK_P2P_HOST=0.0.0.0" >> "$envFile" 2>&1
 
@@ -142,4 +146,6 @@ __core_configure_environment ()
 
     echo "ARK_REDIS_HOST=localhost" >> "$envFile" 2>&1
     echo "ARK_REDIS_PORT=6379" >> "$envFile" 2>&1
+
+    success "Created Environment configuration!"
 }

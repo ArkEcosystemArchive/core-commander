@@ -6,9 +6,6 @@ core_configure_database ()
 
     . "$envFile"
 
-    rm "$envFile"
-    touch "$envFile"
-
     read -p "Enter the database host, or press ENTER for the default [$ARK_DB_HOST]: " inputHost
     read -p "Enter the database username, or press ENTER for the default [$ARK_DB_USERNAME]: " inputUsername
     read -p "Enter the database password, or press ENTER for the default [$ARK_DB_DATABASE]: " inputPassword
