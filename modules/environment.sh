@@ -55,5 +55,6 @@ setup_environment ()
 
     if [[ -e "$commander_config" ]]; then
         . "$commander_config"
+        . "${CORE_DATA}/.env"
     fi
 }
