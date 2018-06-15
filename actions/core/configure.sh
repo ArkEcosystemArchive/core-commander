@@ -107,7 +107,7 @@ __core_configure_core ()
 
 __core_configure_commander ()
 {
-    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$envFile"
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
 }
 
 __core_configure_environment ()
