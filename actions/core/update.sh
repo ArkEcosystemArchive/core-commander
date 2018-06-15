@@ -23,8 +23,8 @@ core_update ()
             relay_stop
 
             heading "Starting Update..."
-            git reset --hard >> "$commander_config"
-            git pull >> "$commander_config"
+            git reset --hard | tee -a "$commander_log"
+            git pull | tee -a "$commander_log"
             success "Update OK!"
 
             STATUS_CORE_UPDATE="No"

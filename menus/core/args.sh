@@ -11,16 +11,22 @@ menu_manage_core_parse_args ()
             core_update
 
             press_to_continue
+
+            menu_manage_core
         ;;
         p|P)
             core_uninstall
 
             press_to_continue
+
+            menu_manage_core
         ;;
         c|C)
             core_configure
 
             press_to_continue
+
+            menu_manage_core
         ;;
         h|H)
             menu_manage_core_help

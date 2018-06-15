@@ -4,7 +4,7 @@ redis_start ()
 {
     heading "Starting Redis..."
 
-    sudo systemctl start redis-server | tee -a "$commander_log"
+    sudo systemctl start redis-server >> "$commander_log" 2>&1
 
     redis_status
 
@@ -15,7 +15,7 @@ redis_stop ()
 {
     heading "Stopping Redis..."
 
-    sudo systemctl stop redis-server | tee -a "$commander_log"
+    sudo systemctl stop redis-server >> "$commander_log" 2>&1
 
     redis_status
 
@@ -26,7 +26,7 @@ redis_restart ()
 {
     heading "Restarting Redis..."
 
-    sudo systemctl restart redis-server | tee -a "$commander_log"
+    sudo systemctl restart redis-server >> "$commander_log" 2>&1
 
     redis_status
 
@@ -38,7 +38,7 @@ redis_install ()
     heading "Installing Redis..."
 
     yes "" | sudo add-apt-repository ppa:chris-lea/redis-server | tee -a "$commander_log"
-    sudo apt-get update | tee -a "$commander_log"
+    sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get -y install redis-server | tee -a "$commander_log"
 
     sudo sed -i '/exit 0/iecho never > /sys/kernel/mm/transparent_hugepage/enabled\n' /etc/rc.local

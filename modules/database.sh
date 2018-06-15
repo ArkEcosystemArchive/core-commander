@@ -3,31 +3,36 @@
 database_drop_user ()
 {
     heading "Dropping Database User..."
-    sudo -u postgres dropuser --if-exists "$USER" | tee -a "$commander_log"
+
+    sudo -u postgres dropuser --if-exists "$ARK_DB_PASSWORD" >> "$commander_log" 2>&1
+
     success "Dropped Database User!"
 }
 
 database_destroy ()
 {
     heading "Destroying Database..."
-    sudo -u postgres dropdb --if-exists "ark_${CORE_NETWORK}" | tee -a "$commander_log"
+
+    sudo -u postgres dropdb --if-exists "$ARK_DB_DATABASE" >> "$commander_log" 2>&1
+
     success "Destroyed Database!"
 }
 
 database_create ()
 {
     heading "Creating Database..."
-    wait_to_continue
-    sudo -u postgres psql -c "CREATE USER $USER WITH PASSWORD 'password' CREATEDB;" | tee -a "$commander_log"
-    wait_to_continue
-    createdb "ark_${CORE_NETWORK}"
-    success "Created Database!"
-}
 
-database_close ()
-{
-    heading "Closing Database..."
-    sudo -u postgres psql -c "UPDATE pg_database SET datallowconn = false WHERE datname = 'ark_${CORE_NETWORK}';" | tee -a "$commander_log"
-    sudo -u postgres psql -c "SELECT pid, pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'ark_${CORE_NETWORK}' AND pid <> pg_backend_pid();" | tee -a "$commander_log"
-    success "Closed Database!"
+    wait_to_continue
+
+    # needed to avoid "could not connect to database template1" errors
+    sudo -u postgres psql -c "CREATE USER $USER WITH PASSWORD 'password' CREATEDB;" >> "$commander_log" 2>&1
+
+    sudo -u postgres psql -c "CREATE USER $ARK_DB_USERNAME WITH PASSWORD '$ARK_DB_PASSWORD' CREATEDB;" >> "$commander_log" 2>&1
+    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $ARK_DB_DATABASE TO $ARK_DB_USERNAME;" >> "$commander_log" 2>&1
+
+    wait_to_continue
+
+    createdb "$ARK_DB_DATABASE" >> "$commander_log" 2>&1
+
+    success "Created Database!"
 }

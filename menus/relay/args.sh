@@ -11,21 +11,29 @@ menu_manage_relay_parse_args ()
             relay_start
 
             press_to_continue
+
+            menu_manage_relay
         ;;
         k|K)
             relay_stop
 
             press_to_continue
+
+            menu_manage_relay
         ;;
         r|R)
             relay_restart
 
             press_to_continue
+
+            menu_manage_relay
         ;;
         l|L)
             relay_logs
 
             press_to_continue
+
+            menu_manage_relay
         ;;
         h|H)
             relay_help

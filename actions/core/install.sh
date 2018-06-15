@@ -9,12 +9,12 @@ core_install ()
     else
         heading "Installing ARK Core..."
 
-        sudo mkdir "$CORE_DIR" >> "$commander_config"
-        sudo chown "$USER":"$USER" "$CORE_DIR" >> "$commander_config"
-        sudo rm -rf "$CORE_DIR" >> "$commander_config"
-        git clone "$CORE_REPO" "$CORE_DIR" >> "$commander_config"
+        sudo mkdir "$CORE_DIR" >> "$commander_log" 2>&1
+        sudo chown "$USER":"$USER" "$CORE_DIR" >> "$commander_log" 2>&1
+        sudo rm -rf "$CORE_DIR" >> "$commander_log" 2>&1
+        git clone "$CORE_REPO" "$CORE_DIR" | tee -a "$commander_log"
         cd "$CORE_DIR"
-        lerna bootstrap >> "$commander_config"
+        lerna bootstrap | tee -a "$commander_log"
 
         core_configure
 

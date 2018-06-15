@@ -14,6 +14,17 @@ cd core-commander
 bash commander.sh
 ```
 
+## Development
+
+```sh
+git clone https://github.com/ArkEcosystem/core-commander -b develop
+cd core-commander/.dev/{operating_system}
+vagrant up
+vagrant ssh
+cd /vagrant
+bash commander.sh
+```
+
 ## Contributing
 
 Please see [Contributing Guidelines](https://docs.ark.io/docs/contributing) for details.
