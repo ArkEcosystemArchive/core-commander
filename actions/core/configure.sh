@@ -72,16 +72,19 @@ __core_configure_network ()
             "mainnet")
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
+                __core_configure_environment "mainnet"
                 break
             ;;
             "devnet")
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
+                __core_configure_environment "devnet"
                 break
             ;;
             "testnet")
                 __core_configure_core "testnet"
                 __core_configure_commander "testnet"
+                __core_configure_environment "testnet"
                 break
             ;;
             *)
@@ -105,4 +108,38 @@ __core_configure_core ()
 __core_configure_commander ()
 {
     sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$envFile"
+}
+
+__core_configure_environment ()
+{
+    local envFile="${CORE_DATA}/.env"
+
+    echo "ARK_P2P_HOST=0.0.0.0" >> "$envFile" 2>&1
+
+    if [[ "$1" = "testnet" ]]; then
+        echo "ARK_P2P_PORT=4000" >> "$envFile" 2>&1
+    fi
+
+    if [[ "$1" = "mainnet" ]]; then
+        echo "ARK_P2P_PORT=4001" >> "$envFile" 2>&1
+    fi
+
+    if [[ "$1" = "devnet" ]]; then
+        echo "ARK_P2P_PORT=4002" >> "$envFile" 2>&1
+    fi
+
+    echo "ARK_API_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_API_PORT=4003" >> "$envFile" 2>&1
+
+    echo "ARK_WEBHOOKS_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_WEBHOOKS_PORT=4004" >> "$envFile" 2>&1
+
+    echo "ARK_GRAPHQL_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_GRAPHQL_PORT=4005" >> "$envFile" 2>&1
+
+    echo "ARK_JSONRPC_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_JSONRPC_PORT=8080" >> "$envFile" 2>&1
+
+    echo "ARK_REDIS_HOST=localhost" >> "$envFile" 2>&1
+    echo "ARK_REDIS_PORT=6379" >> "$envFile" 2>&1
 }
