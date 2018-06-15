@@ -104,15 +104,5 @@ __core_configure_core ()
 
 __core_configure_commander ()
 {
-    rm "$commander_config"
-    touch "$commander_config"
-
-    echo "CORE_REPO=$CORE_REPO" >> "$commander_config" 2>&1
-    echo "CORE_DIR=$CORE_DIR" >> "$commander_config" 2>&1
-    echo "CORE_DATA=$CORE_DATA" >> "$commander_config" 2>&1
-    echo "CORE_CONFIG=$CORE_CONFIG" >> "$commander_config" 2>&1
-    echo "CORE_TOKEN=$CORE_TOKEN" >> "$commander_config" 2>&1
-    echo "CORE_NETWORK=$1" >> "$commander_config" 2>&1
-    echo "EXPLORER_REPO=$EXPLORER_REPO" >> "$commander_config" 2>&1
-    echo "EXPLORER_DIR=$EXPLORER_DIR" >> "$commander_config" 2>&1
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$envFile"
 }
