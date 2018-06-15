@@ -44,6 +44,7 @@ ntp_install ()
         if [[ "$STATUS_NTP" = "Off" ]]; then
             heading "Installing NTP..."
 
+            sudo timedatectl set-ntp off # disable the default systemd timesyncd service
             sudo apt-get install ntp -yyq | tee -a "$commander_log"
             ntp_stop
             sudo ntpd -gq | tee -a "$commander_log"
