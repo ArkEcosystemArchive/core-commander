@@ -11,26 +11,36 @@ menu_manage_forger_parse_args ()
             forger_start
 
             press_to_continue
+
+            menu_manage_forger
         ;;
         k|K)
             forger_stop
 
             press_to_continue
+
+            menu_manage_forger
         ;;
         r|R)
             forger_restart
 
             press_to_continue
+
+            menu_manage_forger
         ;;
         c|C)
             forger_configure
 
             press_to_continue
+
+            menu_manage_forger
         ;;
         l|L)
             forger_logs
 
             press_to_continue
+
+            menu_manage_forger
         ;;
         h|H)
             forger_help

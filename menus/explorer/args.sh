@@ -11,36 +11,50 @@ menu_manage_explorer_parse_args ()
             explorer_install
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         u|U)
             explorer_update
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         p|P)
             explorer_uninstall
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         s|S)
             explorer_start
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         k|K)
             explorer_stop
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         r|R)
             explorer_restart
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         l|L)
             explorer_logs
 
             press_to_continue
+
+            menu_manage_explorer
         ;;
         h|H)
             menu_manage_explorer_help

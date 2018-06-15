@@ -11,16 +11,22 @@ menu_miscellaneous_parse_args ()
             miscellaneous_install_updates
 
             press_to_continue
+
+            menu_miscellaneous
         ;;
         e|E)
             miscellaneous_commander_executable
 
             press_to_continue
+
+            menu_miscellaneous
         ;;
         a|A)
             miscellaneous_commander_alias
 
             press_to_continue
+
+            menu_miscellaneous
         ;;
         h|H)
             menu_miscellaneous_help
