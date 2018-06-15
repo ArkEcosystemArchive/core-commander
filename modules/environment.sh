@@ -24,12 +24,6 @@ setup_environment ()
 
     set_locale
 
-    if [[ $(systemd-detect-virt) == "lxc" ]] || [[ $(systemd-detect-virt) == "openvz" ]]; then
-        CONTAINER=1
-    else
-        CONTAINER=0
-    fi
-
     if [[ ! -f "$commander_config" ]]; then
         ascii
 

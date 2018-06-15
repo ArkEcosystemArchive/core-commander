@@ -35,33 +35,28 @@ ntp_restart ()
 
 ntp_install ()
 {
-    # TODO: remove container usage
-    if [[ "$CONTAINER" -eq 1 ]]; then
-        info "Your host is running in LXC or OpenVZ container. NTP is not required."
-    else
+    ntp_status
+
+    if [[ "$STATUS_NTP" = "Off" ]]; then
+        heading "Installing NTP..."
+
+        sudo timedatectl set-ntp off # disable the default systemd timesyncd service
+        sudo apt-get install ntp -yyq | tee -a "$commander_log"
+        ntp_stop
+        sudo ntpd -gq | tee -a "$commander_log"
+        wait_to_continue
+        ntp_start
+        wait_to_continue
+
         ntp_status
 
         if [[ "$STATUS_NTP" = "Off" ]]; then
-            heading "Installing NTP..."
-
-            sudo timedatectl set-ntp off # disable the default systemd timesyncd service
-            sudo apt-get install ntp -yyq | tee -a "$commander_log"
-            ntp_stop
-            sudo ntpd -gq | tee -a "$commander_log"
-            wait_to_continue
-            ntp_start
-            wait_to_continue
-
-            ntp_status
-
-            if [[ "$STATUS_NTP" = "Off" ]]; then
-                error "NTP failed to start! It should be installed and running for ARK."
-                error "Check /etc/ntp.conf for any issues and correct them first! Exiting."
-                exit 1
-            fi
-
-            success "Installed NTP!"
+            error "NTP failed to start! It should be installed and running for ARK."
+            error "Check /etc/ntp.conf for any issues and correct them first! Exiting."
+            exit 1
         fi
+
+        success "Installed NTP!"
     fi
 }
 
