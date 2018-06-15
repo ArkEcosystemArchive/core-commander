@@ -25,14 +25,14 @@ setup_environment ()
         # create ~/.commander
         touch "$commander_config"
 
-        echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_log"
-        echo "CORE_DIR=${HOME}/ark-core" >> "$commander_log"
-        echo "CORE_DATA=${HOME}/.ark" >> "$commander_log"
-        echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_log"
-        echo "CORE_TOKEN=ark" >> "$commander_log"
-        echo "CORE_NETWORK=devnet" >> "$commander_log"
-        echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_log"
-        echo "EXPLORER_DIR=${HOME}/ark-explorer" >> "$commander_log"
+        echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
+        echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
+        echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
+        echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1
+        echo "CORE_TOKEN=ark" >> "$commander_config" 2>&1
+        echo "CORE_NETWORK=devnet" >> "$commander_config" 2>&1
+        echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config" 2>&1
+        echo "EXPLORER_DIR=${HOME}/ark-explorer" >> "$commander_config" 2>&1
 
         . "$commander_config"
 
@@ -41,10 +41,10 @@ setup_environment ()
         local envFile="${HOME}/.ark/.env"
         touch "$envFile"
 
-        echo "ARK_DB_HOST=localhost" >> "$envFile"
-        echo "ARK_DB_USERNAME=ark" >> "$envFile"
-        echo "ARK_DB_PASSWORD=password" >> "$envFile"
-        echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile"
+        echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
+        echo "ARK_DB_USERNAME=ark" >> "$envFile" 2>&1
+        echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
+        echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile" 2>&1
 
         success "All system dependencies have been installed! The system will restart now."
 

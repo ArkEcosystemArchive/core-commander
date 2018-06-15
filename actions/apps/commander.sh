@@ -128,14 +128,14 @@ __commander_configure ()
     rm "$commander_config"
     touch "$commander_config"
 
-    echo "CORE_REPO=$1" >> "$commander_config"
-    echo "CORE_DIR=$2" >> "$commander_config"
-    echo "CORE_DATA=$3" >> "$commander_config"
-    echo "CORE_CONFIG=$4" >> "$commander_config"
-    echo "CORE_TOKEN=$5" >> "$commander_config"
-    echo "CORE_NETWORK=$6" >> "$commander_config"
-    echo "EXPLORER_REPO=$7" >> "$commander_config"
-    echo "EXPLORER_DIR=$8" >> "$commander_config"
+    echo "CORE_REPO=$1" >> "$commander_config" 2>&1
+    echo "CORE_DIR=$2" >> "$commander_config" 2>&1
+    echo "CORE_DATA=$3" >> "$commander_config" 2>&1
+    echo "CORE_CONFIG=$4" >> "$commander_config" 2>&1
+    echo "CORE_TOKEN=$5" >> "$commander_config" 2>&1
+    echo "CORE_NETWORK=$6" >> "$commander_config" 2>&1
+    echo "EXPLORER_REPO=$7" >> "$commander_config" 2>&1
+    echo "EXPLORER_DIR=$8" >> "$commander_config" 2>&1
 
     . "$commander_config"
 

@@ -47,8 +47,13 @@ core_configure ()
 
 __core_configure_pre ()
 {
-    relay_stop
-    forger_stop
+    if [[ "$STATUS_RELAY" = "On" ]]; then
+        relay_stop
+    fi
+
+    if [[ "$STATUS_FORGER" = "On" ]]; then
+        forger_stop
+    fi
 }
 
 __core_configure_post ()
@@ -105,7 +110,7 @@ __core_configure_database ()
     read -p "Please enter your database host [localhost]: " inputHost
     read -p "Please enter your database host [ark]: " inputUsername
     read -p "Please enter your database host [password]: " inputPassword
-    read -p "Please enter your database host [ark_devnet]: " inputDatabase
+    read -p "Please enter your database host [ark_${CORE_NETWORK}]: " inputDatabase
 
     if [[ -z "$inputHost" ]]; then
         echo "ARK_DB_HOST=$ARK_DB_HOST" >> "$envFile" 2>&1
@@ -148,12 +153,12 @@ __core_configure_commander ()
     rm "$commander_config"
     touch "$commander_config"
 
-    echo "CORE_REPO=$CORE_REPO" >> "$commander_log"
-    echo "CORE_DIR=$CORE_DIR" >> "$commander_log"
-    echo "CORE_DATA=$CORE_DATA" >> "$commander_log"
-    echo "CORE_CONFIG=$CORE_CONFIG" >> "$commander_log"
-    echo "CORE_TOKEN=$CORE_TOKEN" >> "$commander_log"
-    echo "CORE_NETWORK=$1" >> "$commander_log"
-    echo "EXPLORER_REPO=$EXPLORER_REPO" >> "$commander_log"
-    echo "EXPLORER_DIR=$EXPLORER_DIR" >> "$commander_log"
+    echo "CORE_REPO=$CORE_REPO" >> "$commander_config" 2>&1
+    echo "CORE_DIR=$CORE_DIR" >> "$commander_config" 2>&1
+    echo "CORE_DATA=$CORE_DATA" >> "$commander_config" 2>&1
+    echo "CORE_CONFIG=$CORE_CONFIG" >> "$commander_config" 2>&1
+    echo "CORE_TOKEN=$CORE_TOKEN" >> "$commander_config" 2>&1
+    echo "CORE_NETWORK=$1" >> "$commander_config" 2>&1
+    echo "EXPLORER_REPO=$EXPLORER_REPO" >> "$commander_config" 2>&1
+    echo "EXPLORER_DIR=$EXPLORER_DIR" >> "$commander_config" 2>&1
 }
