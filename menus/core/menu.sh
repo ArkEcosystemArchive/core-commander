@@ -12,6 +12,7 @@ menu_manage_core ()
 
     divider
 
+    text_white "    L. Configure Log Level"
     text_white "    D. Configure Database"
     text_white "    A. Configure Hosts & Ports"
 

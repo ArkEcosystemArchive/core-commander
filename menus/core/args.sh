@@ -35,6 +35,13 @@ menu_manage_core_parse_args ()
 
             menu_manage_core
         ;;
+        l|L)
+            core_configure_log_level
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
         d|D)
             core_configure_database
 
