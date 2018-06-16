@@ -50,7 +50,7 @@ pgsql_install ()
 
 pgsql_status ()
 {
-    local status=$(sudo pgrep -x postgres)
+    local status=$(pgrep -x postgres)
 
     if [[ -z "$status" ]]; then
         STATUS_PGSQL="Off"
