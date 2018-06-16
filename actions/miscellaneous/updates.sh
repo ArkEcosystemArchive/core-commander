@@ -32,11 +32,14 @@ miscellaneous_install_updates ()
             sudo apt-get autoremove -yyq | tee -a "$commander_log"
             sudo apt-get autoclean -yq | tee -a "$commander_log"
 
-            success "All system dependencies have been updated! The system will restart now."
+            success "All system dependencies have been updated!"
 
             press_to_continue
 
-            sudo reboot
+            if [ -f /var/run/reboot-required ]; then
+                success "The system will restart now."
+                sudo reboot
+            fi
         fi
     fi
 }
