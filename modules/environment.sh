@@ -20,7 +20,7 @@ setup_environment_file ()
 
 setup_environment ()
 {
-    sudo echo "Requesting sudo permissions for $USER"
+    echo "Requesting sudo permissions for $USER"
 
     sudo updatedb
 

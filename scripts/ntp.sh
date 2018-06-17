@@ -62,7 +62,7 @@ ntp_install ()
 
 ntp_status ()
 {
-    local status=$(sudo pgrep -x ntpd)
+    local status=$(pgrep -x ntpd)
 
     if [[ -z "$status" ]]; then
         STATUS_NTP="Off"
