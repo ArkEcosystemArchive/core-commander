@@ -15,6 +15,7 @@ commander_config="${HOME}/.commander"
 
 . "${commander_dir}/helpers/typography.sh"
 . "${commander_dir}/helpers/continue.sh"
+. "${commander_dir}/helpers/reboot.sh"
 . "${commander_dir}/helpers/errors.sh"
 . "${commander_dir}/helpers/core.sh"
 

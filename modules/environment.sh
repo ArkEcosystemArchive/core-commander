@@ -50,12 +50,10 @@ setup_environment ()
 
         # create ~/.ark/.env
         setup_environment_file
+        success "All system dependencies have been installed!"
 
-        success "All system dependencies have been installed! The system will restart now."
-
+        check_and_recommend_reboot
         press_to_continue
-
-        sudo reboot
     fi
 
     if [[ -e "$commander_config" ]]; then
