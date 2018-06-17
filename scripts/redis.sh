@@ -62,7 +62,7 @@ redis_install ()
 
 redis_status ()
 {
-    local status=$(sudo pgrep -x redis-server)
+    local status=$(pgrep -x redis-server)
 
     if [[ -z "$status" ]]; then
         STATUS_REDIS="Off"
