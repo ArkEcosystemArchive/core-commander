@@ -19,7 +19,7 @@ miscellaneous_install_updates ()
 
         warning "There are $available_updates system updates available. $security_updates of them are security updates!"
 
-        read -p "Do you want to update and restart your system now? [Y/n] : " choice
+        read -p "Do you want to update? [Y/n] : " choice
 
         if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             STATUS_SYSTEM_UPDATE="No"
@@ -34,12 +34,8 @@ miscellaneous_install_updates ()
 
             success "All system dependencies have been updated!"
 
+            check_and_recommend_reboot
             press_to_continue
-
-            if [ -f /var/run/reboot-required ]; then
-                success "The system will restart now."
-                sudo reboot
-            fi
         fi
     fi
 }

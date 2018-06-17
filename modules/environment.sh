@@ -52,11 +52,8 @@ setup_environment ()
         setup_environment_file
         success "All system dependencies have been installed!"
 
+        check_and_recommend_reboot
         press_to_continue
-        if [ -f /var/run/reboot-required ]; then
-            success "The system will restart now."
-            sudo reboot
-        fi
     fi
 
     if [[ -e "$commander_config" ]]; then
