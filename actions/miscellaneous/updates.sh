@@ -6,7 +6,6 @@ miscellaneous_install_updates ()
 
     heading "Checking for system updates..."
 
-    sudo apt-get update >> "$commander_log" 2>&1
     available_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 1)
     security_updates=$(/usr/lib/update-notifier/apt-check 2>&1 | cut -d ";" -f 2)
 
