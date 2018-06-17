@@ -20,10 +20,6 @@ setup_environment_file ()
 
 setup_environment ()
 {
-    echo "Requesting sudo permissions for $USER"
-
-    sudo updatedb
-
     set_locale
 
     if [[ ! -f "$commander_config" ]]; then
