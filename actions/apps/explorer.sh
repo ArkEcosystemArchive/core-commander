@@ -44,7 +44,8 @@ explorer_update ()
 
     git fetch
 
-    local remote_version=$(git rev-parse origin/master)
+    local origin=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+    local remote_version=$(git rev-parse origin/"$origin")
     local local_version=$(git rev-parse HEAD)
 
     if [[ "$remote_version" == "$local_version" ]]; then

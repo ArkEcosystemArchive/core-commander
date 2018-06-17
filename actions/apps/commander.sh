@@ -176,14 +176,14 @@ __commander_configure ()
     rm "$commander_config"
     touch "$commander_config"
 
-    echo "CORE_REPO=$1" >> "$commander_config" 2>&1
-    echo "CORE_DIR=$2" >> "$commander_config" 2>&1
-    echo "CORE_DATA=$3" >> "$commander_config" 2>&1
-    echo "CORE_CONFIG=$4" >> "$commander_config" 2>&1
-    echo "CORE_TOKEN=$5" >> "$commander_config" 2>&1
-    echo "CORE_NETWORK=$6" >> "$commander_config" 2>&1
-    echo "EXPLORER_REPO=$7" >> "$commander_config" 2>&1
-    echo "EXPLORER_DIR=$8" >> "$commander_config" 2>&1
+    sed -i -e "s/CORE_REPO=$CORE_REPO/CORE_REPO=$1/g" "$commander_config"
+    sed -i -e "s/CORE_DIR=$CORE_DIR/CORE_DIR=$2/g" "$commander_config"
+    sed -i -e "s/CORE_DATA=$CORE_DATA/CORE_DATA=$3/g" "$commander_config"
+    sed -i -e "s/CORE_CONFIG=$CORE_CONFIG/CORE_CONFIG=$4/g" "$commander_config"
+    sed -i -e "s/CORE_TOKEN=$CORE_TOKEN/CORE_TOKEN=$5/g" "$commander_config"
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$6/g" "$commander_config"
+    sed -i -e "s/EXPLORER_REPO=$EXPLORER_REPO/EXPLORER_REPO=$7/g" "$commander_config"
+    sed -i -e "s/EXPLORER_DIR=$EXPLORER_DIR/EXPLORER_DIR=$8/g" "$commander_config"
 
     . "$commander_config"
 

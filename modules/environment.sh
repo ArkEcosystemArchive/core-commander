@@ -7,6 +7,8 @@ setup_environment_file ()
         local envFile="${CORE_DATA}/.env"
         touch "$envFile"
 
+        echo "ARK_LOG_LEVEL=debug" >> "$envFile" 2>&1
+
         echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
         echo "ARK_DB_USERNAME=ark" >> "$envFile" 2>&1
         echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
@@ -23,12 +25,6 @@ setup_environment ()
     sudo updatedb
 
     set_locale
-
-    if [[ $(systemd-detect-virt) == "lxc" ]] || [[ $(systemd-detect-virt) == "openvz" ]]; then
-        CONTAINER=1
-    else
-        CONTAINER=0
-    fi
 
     if [[ ! -f "$commander_config" ]]; then
         ascii
@@ -54,12 +50,10 @@ setup_environment ()
 
         # create ~/.ark/.env
         setup_environment_file
+        success "All system dependencies have been installed!"
 
-        success "All system dependencies have been installed! The system will restart now."
-
+        check_and_recommend_reboot
         press_to_continue
-
-        sudo reboot
     fi
 
     if [[ -e "$commander_config" ]]; then

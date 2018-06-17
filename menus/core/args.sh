@@ -28,6 +28,34 @@ menu_manage_core_parse_args ()
 
             menu_manage_core
         ;;
+        c|C)
+            core_configure
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
+        l|L)
+            core_configure_log_level
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
+        d|D)
+            core_configure_database
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
+        a|A)
+            core_configure_hosts_and_ports
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
         h|H)
             menu_manage_core_help
         ;;

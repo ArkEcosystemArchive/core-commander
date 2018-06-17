@@ -16,7 +16,7 @@ core_configure ()
 
             __core_configure_network
 
-            __core_configure_database
+            core_configure_database
 
             __core_configure_post
 
@@ -29,7 +29,7 @@ core_configure ()
 
         __core_configure_network
 
-        __core_configure_database
+        core_configure_database
 
         __core_configure_post
 
@@ -72,16 +72,19 @@ __core_configure_network ()
             "mainnet")
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
+                __core_configure_environment "mainnet"
                 break
             ;;
             "devnet")
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
+                __core_configure_environment "devnet"
                 break
             ;;
             "testnet")
                 __core_configure_core "testnet"
                 __core_configure_commander "testnet"
+                __core_configure_environment "testnet"
                 break
             ;;
             *)
@@ -91,52 +94,6 @@ __core_configure_network ()
     done
 
     . "$commander_config"
-}
-
-__core_configure_database ()
-{
-    local envFile="${CORE_DATA}/.env"
-
-    . "$envFile"
-
-    local currentHost="$ARK_DB_HOST"
-    local currentUsername="$ARK_DB_USERNAME"
-    local currentPassword="$ARK_DB_PASSWORD"
-    local currentDatabase="$ARK_DB_DATABASE"
-
-    rm "$envFile"
-    touch "$envFile"
-
-    read -p "Enter the database host, or press ENTER for the default [localhost]: " inputHost
-    read -p "Enter the database username, or press ENTER for the default [ark]: " inputUsername
-    read -p "Enter the database password, or press ENTER for the default [password]: " inputPassword
-    read -p "Enter the database name, or press ENTER for the default [ark_${CORE_NETWORK}]: " inputDatabase
-
-    if [[ -z "$inputHost" ]]; then
-        echo "ARK_DB_HOST=$ARK_DB_HOST" >> "$envFile" 2>&1
-    else
-        echo "ARK_DB_HOST=$inputHost" >> "$envFile" 2>&1
-    fi
-
-    if [[ -z "$inputUsername" ]]; then
-        echo "ARK_DB_USERNAME=$ARK_DB_USERNAME" >> "$envFile" 2>&1
-    else
-        echo "ARK_DB_USERNAME=$inputUsername" >> "$envFile" 2>&1
-    fi
-
-    if [[ -z "$inputPassword" ]]; then
-        echo "ARK_DB_PASSWORD=$ARK_DB_PASSWORD" >> "$envFile" 2>&1
-    else
-        echo "ARK_DB_PASSWORD=$inputPassword" >> "$envFile" 2>&1
-    fi
-
-    if [[ -z "$inputDatabase" ]]; then
-        echo "ARK_DB_DATABASE=$ARK_DB_DATABASE" >> "$envFile" 2>&1
-    else
-        echo "ARK_DB_DATABASE=$inputDatabase" >> "$envFile" 2>&1
-    fi
-
-    . "$envFile"
 }
 
 __core_configure_core ()
@@ -150,15 +107,45 @@ __core_configure_core ()
 
 __core_configure_commander ()
 {
-    rm "$commander_config"
-    touch "$commander_config"
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
+}
 
-    echo "CORE_REPO=$CORE_REPO" >> "$commander_config" 2>&1
-    echo "CORE_DIR=$CORE_DIR" >> "$commander_config" 2>&1
-    echo "CORE_DATA=$CORE_DATA" >> "$commander_config" 2>&1
-    echo "CORE_CONFIG=$CORE_CONFIG" >> "$commander_config" 2>&1
-    echo "CORE_TOKEN=$CORE_TOKEN" >> "$commander_config" 2>&1
-    echo "CORE_NETWORK=$1" >> "$commander_config" 2>&1
-    echo "EXPLORER_REPO=$EXPLORER_REPO" >> "$commander_config" 2>&1
-    echo "EXPLORER_DIR=$EXPLORER_DIR" >> "$commander_config" 2>&1
+__core_configure_environment ()
+{
+    heading "Creating Environment configuration..."
+
+    local envFile="${CORE_DATA}/.env"
+
+    touch "$envFile"
+
+    echo "ARK_P2P_HOST=0.0.0.0" >> "$envFile" 2>&1
+
+    if [[ "$1" = "testnet" ]]; then
+        echo "ARK_P2P_PORT=4000" >> "$envFile" 2>&1
+    fi
+
+    if [[ "$1" = "mainnet" ]]; then
+        echo "ARK_P2P_PORT=4001" >> "$envFile" 2>&1
+    fi
+
+    if [[ "$1" = "devnet" ]]; then
+        echo "ARK_P2P_PORT=4002" >> "$envFile" 2>&1
+    fi
+
+    echo "ARK_API_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_API_PORT=4003" >> "$envFile" 2>&1
+
+    echo "ARK_WEBHOOKS_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_WEBHOOKS_PORT=4004" >> "$envFile" 2>&1
+
+    echo "ARK_GRAPHQL_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_GRAPHQL_PORT=4005" >> "$envFile" 2>&1
+
+    echo "ARK_JSONRPC_HOST=0.0.0.0" >> "$envFile" 2>&1
+    echo "ARK_JSONRPC_PORT=8080" >> "$envFile" 2>&1
+
+    echo "ARK_REDIS_HOST=localhost" >> "$envFile" 2>&1
+    echo "ARK_REDIS_PORT=6379" >> "$envFile" 2>&1
+
+    success "Created Environment configuration!"
 }
