@@ -43,13 +43,16 @@ relay_delete ()
 {
     ascii
 
-    heading "Deleting Relay..."
+    local delete_forger=$(pm2status 'ark-core-relay' | awk '{print $2}')
+    if [[ -n $delete_forger ]]; then
+        heading "Deleting Relay..."
 
-    pm2 delete ark-core-relay >> "$commander_log" 2>&1
+        pm2 delete ark-core-relay >> "$commander_log" 2>&1
 
-    relay_status
+        relay_status
 
-    success "Deleted Relay!"
+        success "Deleted Relay!"
+    fi
 }
 
 relay_logs ()
@@ -63,7 +66,7 @@ relay_logs ()
 
 relay_status ()
 {
-    local status=$(pm2 status 2>/dev/null | fgrep "ark-core-relay" | awk '{print $10}')
+    local status=$(pm2status "ark-core-relay" | awk '{print $10}')
 
     if [[ "$status" == "online" ]]; then
         STATUS_RELAY="On"
