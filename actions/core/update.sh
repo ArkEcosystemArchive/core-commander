@@ -22,11 +22,19 @@ core_update ()
         read -p "An update is available for ARK Core, do you want to install it? [Y/n] : " choice
 
         if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
+            relay_status
+            forger_status
+
             local relay_on=$STATUS_RELAY
             local forger_on=$STATUS_FORGER
 
-            relay_stop
-            forger_stop
+            if [[ "$relay_on" = "On" ]]; then
+                relay_stop
+            fi
+
+            if [[ "$forger_on" = "On" ]]; then
+                forger_stop
+            fi
 
             heading "Starting Update..."
             git reset --hard | tee -a "$commander_log"
