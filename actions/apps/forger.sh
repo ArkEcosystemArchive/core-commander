@@ -49,13 +49,16 @@ forger_delete ()
 {
     ascii
 
-    heading "Deleting Forger..."
+    local delete_forger=$(pm2status "ark-core-forger" | awk '{print $2}')
+    if [[ -n $delete_forger ]]; then
+        heading "Deleting Forger..."
 
-    pm2 delete ark-core-forger >> "$commander_log" 2>&1
+        pm2 delete ark-core-forger >> "$commander_log" 2>&1
 
-    forger_status
+        forger_status
 
-    success "Deleted Forger!"
+        success "Deleted Forger!"
+    fi
 }
 
 forger_logs ()
@@ -69,7 +72,7 @@ forger_logs ()
 
 forger_status ()
 {
-    local status=$(pm2 status 2>/dev/null | fgrep "ark-core-forger" | awk '{print $10}')
+    local status=$(pm2status "ark-core-forger" | awk '{print $10}')
 
     if [[ "$status" == "online" ]]; then
         STATUS_FORGER="On"
