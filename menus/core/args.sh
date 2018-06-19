@@ -19,7 +19,7 @@ menu_manage_core_parse_args ()
 
             press_to_continue
 
-            menu_manage_core
+            menu_main
         ;;
         c|C)
             core_configure
