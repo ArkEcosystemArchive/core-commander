@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.2.0 - 2018-06-19
+### Added
+- Log level configuration via `.env`
+- Host configuration via `.env`
+- Port configuration via `.env`
+- Database configuration via `.env`
+- Vagrant Box for Ubuntu 16.04
+- Vagrant Box for Ubuntu 17.10
+- Vagrant Box for Ubuntu 18.04
+- Vagrant Box for Debian 7.11
+- Vagrant Box for Debian 8.10
+- Vagrant Box for Debian 9.4
+
+### Fixed
+- Ubuntu 18.04 ntpd & timesyncd service collision
+- Add `git fetch` to properly check for remote diffs
+- `pm2 status` name collisions
+- Directory removal issue during Ark Core uninstall
+
+### Changed
+- Improved logging & installations by using tee
+- Improved menu & UI flow
+- Significantly reduced the amount of `sudo` requests
+- Use `sed` to edit `.env` file instead of replacing the whole file
+
+### Removed
+- Container environment check
+
 ## 0.1.0 - 2018-06-14
 ### Added
 - initial release
