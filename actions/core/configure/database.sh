@@ -8,7 +8,7 @@ core_configure_database ()
 
     read -p "Enter the database host, or press ENTER for the default [$ARK_DB_HOST]: " inputHost
     read -p "Enter the database username, or press ENTER for the default [$ARK_DB_USERNAME]: " inputUsername
-    read -p "Enter the database password, or press ENTER for the default [$ARK_DB_DATABASE]: " inputPassword
+    read -p "Enter the database password, or press ENTER for the default [$ARK_DB_PASSWORD]: " inputPassword
     read -p "Enter the database name, or press ENTER for the default [ark_${CORE_NETWORK}]: " inputDatabase
 
     if [[ ! -z "$inputHost" ]]; then
