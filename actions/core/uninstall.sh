@@ -14,6 +14,9 @@ core_uninstall ()
 
     database_drop_user
 
+    # Ensure we are not in a directory we are going to delete
+    cd "$commander_dir"
+
     sudo rm -rf "$CORE_DIR"
     sudo rm -rf "$CORE_DATA"
 
