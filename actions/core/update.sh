@@ -39,7 +39,7 @@ core_update ()
             heading "Starting Update..."
             git reset --hard | tee -a "$commander_log"
             git pull | tee -a "$commander_log"
-            lerna boostrap
+            lerna bootstrap
 
             if [[ "$relay_on" = "On" ]]; then
                 relay_start
