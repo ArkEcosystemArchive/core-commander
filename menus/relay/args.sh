@@ -36,7 +36,7 @@ menu_manage_relay_parse_args ()
             menu_manage_relay
         ;;
         h|H)
-            relay_help
+            menu_manage_relay_help
         ;;
         x|X)
             menu_main
