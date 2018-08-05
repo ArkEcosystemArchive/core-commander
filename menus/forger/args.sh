@@ -43,10 +43,10 @@ menu_manage_forger_parse_args ()
             menu_manage_forger
         ;;
         h|H)
-            forger_help
+            menu_manage_forger_help
         ;;
         x|X)
-            menu_manage_forger_help
+            menu_main
         ;;
         *)
             echo -e "$(text_yellow "    Invalid option chosen, please select a valid option and try again.")"
