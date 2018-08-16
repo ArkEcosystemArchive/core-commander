@@ -119,10 +119,10 @@ __core_configure_environment ()
 
     touch "$envFile"
 
-    echo "ARK_P2P_HOST=0.0.0.0" >> "$envFile" 2>&1
+    grep -q '^ARK_P2P_HOST' "$envFile" 2>&1 || echo 'ARK_P2P_HOST=0.0.0.0' >> "$envFile" 2>&1
 
     if [[ "$1" = "testnet" ]]; then
-        echo "ARK_P2P_PORT=4000" >> "$envFile" 2>&1
+        grep -q '^ARK_P2P_PORT' "$envFile" 2>&1 || echo 'ARK_P2P_PORT=4000' >> "$envFile" 2>&1
     fi
 
     # if [[ "$1" = "mainnet" ]]; then
@@ -130,23 +130,23 @@ __core_configure_environment ()
     # fi
 
     if [[ "$1" = "devnet" ]]; then
-        echo "ARK_P2P_PORT=4002" >> "$envFile" 2>&1
+        grep -q '^ARK_P2P_PORT' "$envFile" 2>&1 || echo 'ARK_P2P_PORT=4002' >> "$envFile" 2>&1
     fi
 
-    echo "ARK_API_HOST=0.0.0.0" >> "$envFile" 2>&1
-    echo "ARK_API_PORT=4003" >> "$envFile" 2>&1
+    grep -q '^ARK_API_HOST' "$envFile" 2>&1 || echo 'ARK_API_HOST=0.0.0.0' >> "$envFile" 2>&1
+    grep -q '^ARK_API_PORT' "$envFile" 2>&1 || echo 'ARK_API_PORT=4003' >> "$envFile" 2>&1
 
-    echo "ARK_WEBHOOKS_HOST=0.0.0.0" >> "$envFile" 2>&1
-    echo "ARK_WEBHOOKS_PORT=4004" >> "$envFile" 2>&1
+    grep -q '^ARK_WEBHOOKS_HOST' "$envFile" 2>&1 || echo 'ARK_WEBHOOKS_HOST=0.0.0.0' >> "$envFile" 2>&1
+    grep -q '^ARK_WEBHOOKS_PORT' "$envFile" 2>&1 || echo 'ARK_WEBHOOKS_PORT=4004' >> "$envFile" 2>&1
 
-    echo "ARK_GRAPHQL_HOST=0.0.0.0" >> "$envFile" 2>&1
-    echo "ARK_GRAPHQL_PORT=4005" >> "$envFile" 2>&1
+    grep -q '^ARK_GRAPHQL_HOST' "$envFile" 2>&1 || echo 'ARK_GRAPHQL_HOST=0.0.0.0' >> "$envFile" 2>&1
+    grep -q '^ARK_GRAPHQL_PORT' "$envFile" 2>&1 || echo 'ARK_GRAPHQL_PORT=4005' >> "$envFile" 2>&1
 
-    echo "ARK_JSONRPC_HOST=0.0.0.0" >> "$envFile" 2>&1
-    echo "ARK_JSONRPC_PORT=8080" >> "$envFile" 2>&1
+    grep -q '^ARK_JSONRPC_HOST' "$envFile" 2>&1 || echo 'ARK_JSONRPC_HOST=0.0.0.0' >> "$envFile" 2>&1
+    grep -q '^ARK_JSONRPC_PORT' "$envFile" 2>&1 || echo 'ARK_JSONRPC_PORT=8080' >> "$envFile" 2>&1
 
-    echo "ARK_REDIS_HOST=localhost" >> "$envFile" 2>&1
-    echo "ARK_REDIS_PORT=6379" >> "$envFile" 2>&1
+    grep -q '^ARK_REDIS_HOST' "$envFile" 2>&1 || echo 'ARK_REDIS_HOST=localhost' >> "$envFile" 2>&1
+    grep -q '^ARK_REDIS_PORT' "$envFile" 2>&1 || echo 'ARK_REDIS_PORT=6379' >> "$envFile" 2>&1
 
     success "Created Environment configuration!"
 }
