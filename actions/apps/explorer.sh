@@ -15,7 +15,7 @@ explorer_install ()
     info "Installing dependencies..."
     yarn install | tee -a "$commander_log"
 
-    check=${PIPESTATUS[0]}
+    local check=${PIPESTATUS[0]}
 
     if [ "$check" -eq 0 ]; then
         success "Installed dependencies!"
