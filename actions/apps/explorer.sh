@@ -14,11 +14,27 @@ explorer_install ()
 
     info "Installing dependencies..."
     yarn install | tee -a "$commander_log"
-    success "Installed dependencies!"
+
+    local check=${PIPESTATUS[0]}
+
+    if [ "$check" -eq 0 ]; then
+        success "Installed dependencies!"
+    else
+        error "Could not install dependencies!"
+        return
+    fi
 
     info "Building..."
     yarn build:"$CORE_NETWORK" | tee -a "$commander_log"
-    success "Building!"
+
+    check=${PIPESTATUS[0]}
+
+    if [ "$check" -eq 0 ]; then
+        success "Built succesfully!"
+    else
+        error "Could not build!"
+        return
+    fi
 
     success "Installed ARK Explorer!"
 }
