@@ -104,6 +104,7 @@ __core_configure_core ()
     fi
 
     cp -r "${CORE_DIR}/packages/core/lib/config/$1" "$CORE_CONFIG"
+    cp "${CORE_DIR}/packages/crypto/lib/networks/${CORE_TOKEN}/$1.json" "$CORE_CONFIG/network.json"
 }
 
 __core_configure_commander ()
