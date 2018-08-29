@@ -27,7 +27,7 @@ bash commander.sh
 
 ## Contributing
 
-Please see [Contributing Guidelines](https://docs.ark.io/developers/guidelines/contributing.html) for details.
+Please see [Contributing Guidelines](https://docs.ark.io/guidebook/contribution-guidelines/contributing.html) for details.
 
 ## Security
 
