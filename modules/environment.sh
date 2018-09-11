@@ -10,6 +10,7 @@ setup_environment_file ()
         echo "ARK_LOG_LEVEL=debug" >> "$envFile" 2>&1
 
         echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
+        echo "ARK_DB_PORT=5432" >> "$envFile" 2>&1
         echo "ARK_DB_USERNAME=ark" >> "$envFile" 2>&1
         echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
         echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile" 2>&1
