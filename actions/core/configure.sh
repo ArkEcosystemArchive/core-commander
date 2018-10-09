@@ -65,17 +65,16 @@ __core_configure_network ()
 {
     info "Which network would you like to configure?"
 
-    # validNetworks=("mainnet" "devnet" "testnet")
-    validNetworks=("devnet" "testnet")
+    validNetworks=("mainnet" "devnet" "testnet")
 
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
-            # "mainnet")
-            #     __core_configure_core "mainnet"
-            #     __core_configure_commander "mainnet"
-            #     __core_configure_environment "mainnet"
-            #     break
-            # ;;
+            "mainnet")
+                __core_configure_core "mainnet"
+                __core_configure_commander "mainnet"
+                __core_configure_environment "mainnet"
+                break
+            ;;
             "devnet")
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
@@ -126,9 +125,9 @@ __core_configure_environment ()
         grep -q '^ARK_P2P_PORT' "$envFile" 2>&1 || echo 'ARK_P2P_PORT=4000' >> "$envFile" 2>&1
     fi
 
-    # if [[ "$1" = "mainnet" ]]; then
-    #     echo "ARK_P2P_PORT=4001" >> "$envFile" 2>&1
-    # fi
+    if [[ "$1" = "mainnet" ]]; then
+        echo "ARK_P2P_PORT=4001" >> "$envFile" 2>&1
+    fi
 
     if [[ "$1" = "devnet" ]]; then
         grep -q '^ARK_P2P_PORT' "$envFile" 2>&1 || echo 'ARK_P2P_PORT=4002' >> "$envFile" 2>&1
