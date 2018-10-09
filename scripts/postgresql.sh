@@ -38,7 +38,7 @@ pgsql_install ()
     heading "Installing PostgreSQL..."
 
     sudo apt-get update >> "$commander_log" 2>&1
-    sudo apt-get install postgresql postgresql-contrib | tee -a "$commander_log"
+    sudo apt-get install postgresql postgresql-contrib -y | tee -a "$commander_log"
 
     pgsql_start
 
