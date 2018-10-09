@@ -126,7 +126,7 @@ __core_configure_environment ()
     fi
 
     if [[ "$1" = "mainnet" ]]; then
-        echo "ARK_P2P_PORT=4001" >> "$envFile" 2>&1
+        grep -q '^ARK_P2P_PORT' "$envFile" 2>&1 || echo 'ARK_P2P_PORT=4001' >> "$envFile" 2>&1
     fi
 
     if [[ "$1" = "devnet" ]]; then
