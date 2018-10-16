@@ -7,6 +7,7 @@
 commander=$(basename "$0")
 commander_dir="$(cd "$(dirname "$0")" && pwd)"
 commander_log="${commander_dir}/logs/commander.log"
+commander_ecosystem="${commander_dir}/ecosystem.config.js"
 commander_config="${HOME}/.commander"
 
 # -------------------------
