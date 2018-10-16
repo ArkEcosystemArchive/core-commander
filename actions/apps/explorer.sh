@@ -132,7 +132,7 @@ explorer_logs ()
 
 explorer_status ()
 {
-    local status=$(pm2status "ark-explorer" | awk '{print $10}')
+    local status=$(pm2status "ark-explorer" | awk '{print $13}')
 
     if [[ "$status" == "online" ]]; then
         STATUS_EXPLORER="On"
