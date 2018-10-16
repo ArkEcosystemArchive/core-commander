@@ -17,7 +17,6 @@ module.exports = {
                  --config ${process.env.CORE_CONFIG}
                  --token ${process.env.CORE_TOKEN}
                  --network ${process.env.CORE_NETWORK}`,
-
     max_restarts: 5,
     min_uptime: '5m'
   }, {
@@ -29,8 +28,17 @@ module.exports = {
                   --network ${process.env.CORE_NETWORK}
                   ${parseArg('--bip38')}
                   ${parseArg('--password')}`,
-
     max_restarts: 5,
     min_uptime: '5m'
+  }, {
+    name: 'ark-explorer',
+    script: `${process.env.EXPLORER_DIR}/express-server.js`,
+    args: `--name ark-explorer`,
+    max_restarts: 5,
+    min_uptime: '5m',
+    env: {
+        EXPLORER_HOST: '0.0.0.0',
+        EXPLORER_PORT: 4200
+    }
   }]
 };

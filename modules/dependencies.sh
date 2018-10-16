@@ -54,6 +54,7 @@ install_program_dependencies ()
         success "Program dependencies Installed!"
     fi
 
+    redis_install
     pgsql_install
     ntp_install
 
