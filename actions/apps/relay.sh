@@ -66,7 +66,7 @@ relay_logs ()
 
 relay_status ()
 {
-    local status=$(pm2status "ark-core-relay" | awk '{print $10}')
+    local status=$(pm2status "ark-core-relay" | awk '{print $13}')
 
     if [[ "$status" == "online" ]]; then
         STATUS_RELAY="On"

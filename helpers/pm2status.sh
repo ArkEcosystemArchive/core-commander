@@ -2,5 +2,5 @@
 
 pm2status ()
 {
-   echo $(pm2 status | grep -E "(^| )$1( |$)")
+   echo $(pm2 describe $1 2>/dev/null)
 }
