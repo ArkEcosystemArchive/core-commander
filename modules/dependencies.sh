@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DEPENDENCIES_PROGRAMS=("build-essential libcairo2-dev pkg-config libtool autoconf automake python git curl libpq-dev jq")
-DEPENDENCIES_NODEJS=("pm2 lerna")
+DEPENDENCIES_NODEJS=("pm2 lerna dotenv ")
 
 apt_package_installed()
 {
@@ -54,7 +54,6 @@ install_program_dependencies ()
         success "Program dependencies Installed!"
     fi
 
-    redis_install
     pgsql_install
     ntp_install
 
