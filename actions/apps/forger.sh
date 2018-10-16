@@ -72,7 +72,7 @@ forger_logs ()
 
 forger_status ()
 {
-    local status=$(pm2status "ark-core-forger" | awk '{print $10}')
+    local status=$(pm2status "ark-core-forger" | awk '{print $13}')
 
     if [[ "$status" == "online" ]]; then
         STATUS_FORGER="On"
