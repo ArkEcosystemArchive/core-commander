@@ -29,7 +29,6 @@ commander_config="${HOME}/.commander"
 . "${commander_dir}/scripts/ntp.sh"
 . "${commander_dir}/scripts/pm2.sh"
 . "${commander_dir}/scripts/postgresql.sh"
-. "${commander_dir}/scripts/redis.sh"
 . "${commander_dir}/scripts/yarn.sh"
 
 # -------------------------

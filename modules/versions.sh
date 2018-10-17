@@ -32,10 +32,4 @@ get_versions ()
     else
         VERSION_PSQL="n/a"
     fi
-
-    if [[ -x "$(command -v redis-server)" ]]; then
-        VERSION_REDIS=$(redis-server -v | awk '{ print $3 }' | sed 's/v=//g')
-    else
-        VERSION_REDIS="n/a"
-    fi
 }
