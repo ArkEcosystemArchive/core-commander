@@ -25,7 +25,7 @@ forger_restart ()
 
     heading "Restarting Forger..."
 
-    pm2 restart ark-core-forger >> "$commander_log" 2>&1
+    pm2 restart $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
 
     forger_status
 
@@ -38,7 +38,7 @@ forger_stop ()
 
     heading "Stopping Forger..."
 
-    pm2 stop ark-core-forger >> "$commander_log" 2>&1
+    pm2 stop $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
 
     forger_status
 
@@ -53,7 +53,7 @@ forger_delete ()
     if [[ -n $delete_forger ]]; then
         heading "Deleting Forger..."
 
-        pm2 delete ark-core-forger >> "$commander_log" 2>&1
+        pm2 delete $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
 
         forger_status
 
@@ -144,10 +144,10 @@ __forger_start_with_bip38 ()
 
     read -sp "Please enter your bip38 password: " password
 
-    pm2 start "$CORE_DIR/packages/core/bin/ark" --name ark-core-forger -- forger --data "$CORE_DATA" --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" --bip38 "$bip38" --password "$password" >> "$commander_log" 2>&1
+    pm2 start $commander_ecosystem --only ark-core-forger -- --bip38 "$bip38" --password "$password" >> "$commander_log" 2>&1
 }
 
 __forger_start_without_bip38 ()
 {
-    pm2 start "$CORE_DIR/packages/core/bin/ark" --name ark-core-forger -- forger --data "$CORE_DATA" --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" >> "$commander_log" 2>&1
+    pm2 start $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
 }

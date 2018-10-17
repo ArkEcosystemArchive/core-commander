@@ -6,7 +6,7 @@ relay_start ()
 
     heading "Starting Relay..."
 
-    pm2 start "$CORE_DIR/packages/core/bin/ark" --name ark-core-relay -- relay --data "$CORE_DATA" --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" >> "$commander_log" 2>&1
+    pm2 start $commander_ecosystem --only ark-core-relay >> "$commander_log" 2>&1
 
     relay_status
 
@@ -19,7 +19,7 @@ relay_restart ()
 
     heading "Restarting Relay..."
 
-    pm2 restart ark-core-relay >> "$commander_log" 2>&1
+    pm2 restart $commander_ecosystem --only ark-core-relay >> "$commander_log" 2>&1
 
     relay_status
 
@@ -32,7 +32,7 @@ relay_stop ()
 
     heading "Stopping Relay..."
 
-    pm2 stop ark-core-relay >> "$commander_log" 2>&1
+    pm2 stop $commander_ecosystem --only ark-core-relay >> "$commander_log" 2>&1
 
     relay_status
 
@@ -47,7 +47,7 @@ relay_delete ()
     if [[ -n $delete_forger ]]; then
         heading "Deleting Relay..."
 
-        pm2 delete ark-core-relay >> "$commander_log" 2>&1
+        pm2 delete $commander_ecosystem --only ark-core-relay >> "$commander_log" 2>&1
 
         relay_status
 
