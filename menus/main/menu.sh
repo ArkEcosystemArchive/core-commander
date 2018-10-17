@@ -28,12 +28,6 @@ menu_main ()
         local pgsql="PG: $(text_red ${STATUS_PGSQL})"
     fi
 
-    if [[ "$STATUS_REDIS" = "On" ]]; then
-        local redis="Redis: $(text_green ${STATUS_REDIS})"
-    else
-        local redis="Redis: $(text_red ${STATUS_REDIS})"
-    fi
-
     if [[ -d "$CORE_DIR" ]]; then
         if [[ "$STATUS_CORE_UPDATE" = "Yes" ]]; then
             local core_update="Update: $(text_yellow ${STATUS_CORE_UPDATE})"
@@ -46,11 +40,11 @@ menu_main ()
 
     ascii
 
-    text_white "    Core: $(text_blue ${VERSION_CORE})    NodeJS: $(text_blue ${VERSION_NODE})    PG: $(text_blue ${VERSION_PSQL})    Redis: $(text_blue ${VERSION_REDIS})"
+    text_white "    Core: $(text_blue ${VERSION_CORE})    NodeJS: $(text_blue ${VERSION_NODE})    PG: $(text_blue ${VERSION_PSQL})"
 
     divider
 
-    text_white "    $relay    $forger    $ntp    $pgsql    $redis"
+    text_white "    $relay    $forger    $ntp    $pgsql"
 
     divider
 

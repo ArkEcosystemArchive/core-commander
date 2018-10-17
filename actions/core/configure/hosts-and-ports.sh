@@ -86,19 +86,4 @@ core_configure_hosts_and_ports ()
         fi
     fi
 
-    # @arkecosystem/core-*
-    read -p "Would you like to configure redis? [y/N] : " choice
-
-    if [[ "$choice" =~ ^(yes|y|Y) ]]; then
-        read -p "Enter the Redis host, or press ENTER for the default [${ARK_REDIS_HOST}]: " inputHost
-        read -p "Enter the Redis port, or press ENTER for the default [${ARK_REDIS_PORT}]: " inputPort
-
-        if [[ ! -z "$inputHost" ]]; then
-            sed -i -e "s/ARK_REDIS_HOST=$ARK_REDIS_HOST/ARK_REDIS_HOST=$inputHost/g" "$envFile"
-        fi
-
-        if [[ ! -z "$inputPort" ]]; then
-            sed -i -e "s/ARK_REDIS_PORT=$ARK_REDIS_PORT/ARK_REDIS_PORT=$inputPort/g" "$envFile"
-        fi
-    fi
 }
