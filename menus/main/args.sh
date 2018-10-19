@@ -37,6 +37,8 @@ menu_main_parse_args ()
         ;;
         l|L)
             utils_log
+
+            press_to_continue
         ;;
         h|H)
             menu_main_help
