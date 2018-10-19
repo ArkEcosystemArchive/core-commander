@@ -84,7 +84,7 @@ install_nodejs_dependencies ()
     fi
 
     # Make sure global dotenv can be required locally
-    sh -c "npm link dotenv"
+    sh -c "sudo npm link dotenv"
 
     pm2_install
 }
