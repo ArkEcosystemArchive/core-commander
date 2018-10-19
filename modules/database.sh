@@ -29,7 +29,7 @@ database_create ()
 
     sudo -u postgres psql -c "CREATE USER $ARK_DB_USERNAME WITH PASSWORD '$ARK_DB_PASSWORD' CREATEDB;" | tee -a "$commander_log"
 
-    sudo -u postgres createdb "$ARK_DB_DATABASE" | tee -a "$commander_log"
+    createdb "$ARK_DB_DATABASE" | tee -a "$commander_log"
 
     sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $ARK_DB_DATABASE TO $ARK_DB_USERNAME;" | tee -a "$commander_log"
 
