@@ -5,27 +5,27 @@ menu_main ()
     refresh_state
 
     if [[ "$STATUS_RELAY" = "On" ]]; then
-        local relay="Relay: $(text_green ${STATUS_RELAY})"
+        local relay="$(text_white "Relay:")  $(text_green ${STATUS_RELAY})"
     else
-        local relay="Relay: $(text_red ${STATUS_RELAY})"
+        local relay="$(text_white "Relay:") $(text_red ${STATUS_RELAY})"
     fi
 
     if [[ "$STATUS_FORGER" = "On" ]]; then
-        local forger="Forger: $(text_green ${STATUS_FORGER})"
+        local forger="$(text_white "Forger:")  $(text_green ${STATUS_FORGER})"
     else
-        local forger="Forger: $(text_red ${STATUS_FORGER})"
+        local forger="$(text_white "Forger:") $(text_red ${STATUS_FORGER})"
     fi
 
     if [[ "$STATUS_NTP" = "On" ]]; then
-        local ntp="NTP: $(text_green ${STATUS_NTP})"
+        local ntp="$(text_white "NTP:")  $(text_green ${STATUS_NTP})"
     else
-        local ntp="NTP: $(text_red ${STATUS_NTP})"
+        local ntp="$(text_white "NTP:") $(text_red ${STATUS_NTP})"
     fi
 
     if [[ "$STATUS_PGSQL" = "On" ]]; then
-        local pgsql="PG: $(text_green ${STATUS_PGSQL})"
+        local pgsql="$(text_white "PG:")  $(text_green ${STATUS_PGSQL})"
     else
-        local pgsql="PG: $(text_red ${STATUS_PGSQL})"
+        local pgsql="$(text_white "PG:") $(text_red ${STATUS_PGSQL})"
     fi
 
     if [[ -d "$CORE_DIR" ]]; then
@@ -44,7 +44,7 @@ menu_main ()
 
     divider
 
-    text_white "    $relay    $forger    $ntp    $pgsql"
+    echo "    $relay         $forger         $ntp         $pgsql"
 
     divider
 
