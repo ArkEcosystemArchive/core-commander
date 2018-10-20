@@ -36,11 +36,30 @@ menu_main ()
         fi
     fi
 
+    local core_version_raw="Core: ${VERSION_CORE}"
+    local node_version_raw="Node: ${VERSION_NODE}"
+    local pg_version_raw="PG: ${VERSION_PSQL}"
+
+    local core_version="$(text_white "Core:") $(text_blue ${VERSION_CORE})"
+    local node_version="$(text_white "NodeJS:") $(text_blue ${VERSION_NODE})"
+    local pg_version="$(text_white "PG:") $(text_blue ${VERSION_PSQL})"
+
+    local pad=$(printf '%0.1s' " "{1..30})
+    local whitespace=$((61 - ${#core_version_raw} - ${#node_version_raw} - ${#pg_version_raw}))
+    local padding=$(($whitespace / 2))
+
     trap - INT
 
     ascii
 
-    text_white "    Core: $(text_blue ${VERSION_CORE})    NodeJS: $(text_blue ${VERSION_NODE})    PG: $(text_blue ${VERSION_PSQL})"
+    printf '    %s' "$core_version"
+    printf '%*.*s' 0 $(($padding)) "$pad"
+    printf '%s' "$node_version"
+    if [ $((whitespace % 2)) -eq 1 ]; then
+        padding=$(($padding + 1))
+    fi
+    printf '%*.*s' 0 $(($padding)) "$pad"
+    printf '%s\n' "$pg_version"
 
     divider
 
