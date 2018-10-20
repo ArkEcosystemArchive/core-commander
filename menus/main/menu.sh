@@ -5,25 +5,25 @@ menu_main ()
     refresh_state
 
     if [[ "$STATUS_RELAY" = "On" ]]; then
-        local relay="Relay: $(text_green ${STATUS_RELAY})"
+        local relay="Relay:  $(text_green ${STATUS_RELAY})"
     else
         local relay="Relay: $(text_red ${STATUS_RELAY})"
     fi
 
     if [[ "$STATUS_FORGER" = "On" ]]; then
-        local forger="Forger: $(text_green ${STATUS_FORGER})"
+        local forger="Forger:  $(text_green ${STATUS_FORGER})"
     else
         local forger="Forger: $(text_red ${STATUS_FORGER})"
     fi
 
     if [[ "$STATUS_NTP" = "On" ]]; then
-        local ntp="NTP: $(text_green ${STATUS_NTP})"
+        local ntp="NTP:  $(text_green ${STATUS_NTP})"
     else
         local ntp="NTP: $(text_red ${STATUS_NTP})"
     fi
 
     if [[ "$STATUS_PGSQL" = "On" ]]; then
-        local pgsql="PG: $(text_green ${STATUS_PGSQL})"
+        local pgsql="PG:  $(text_green ${STATUS_PGSQL})"
     else
         local pgsql="PG: $(text_red ${STATUS_PGSQL})"
     fi
@@ -44,7 +44,7 @@ menu_main ()
 
     divider
 
-    text_white "    $relay    $forger    $ntp    $pgsql"
+    text_white "    $relay         $forger         $ntp         $pgsql"
 
     divider
 
