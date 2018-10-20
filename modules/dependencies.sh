@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DEPENDENCIES_PROGRAMS=("build-essential libcairo2-dev pkg-config libtool autoconf automake python git curl libpq-dev jq")
-DEPENDENCIES_NODEJS=("pm2 lerna dotenv")
+DEPENDENCIES_NODEJS=("pm2 lerna")
 
 apt_package_installed()
 {
@@ -83,8 +83,9 @@ install_nodejs_dependencies ()
         success "Installed node.js dependencies!"
     fi
 
-    # Make sure global dotenv can be required locally
-    sh -c "sudo npm link dotenv"
+    if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
+      sh -c "npm install dotenv"
+    fi
 
     pm2_install
 }
