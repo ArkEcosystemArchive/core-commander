@@ -44,7 +44,7 @@ menu_main_help ()
     text_white "    opens the help file where all this information is available."
     echo
 
-    text_yellow "    X — Exit"
+    text_yellow "    Exit (X)"
     text_white "    exits ARK Commander"
 
     divider
