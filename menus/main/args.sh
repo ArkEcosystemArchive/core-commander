@@ -38,7 +38,7 @@ menu_main_parse_args ()
         l|L)
             utils_log
 
-            if [ $? -eq 130 ]; then
+            if [[ $? -eq 130 ]]; then
                 press_to_continue
             else
                 wait_to_continue

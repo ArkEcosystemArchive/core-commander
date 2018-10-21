@@ -6,7 +6,7 @@ utils_log ()
 
     local log_dir="${CORE_DATA}/logs/core/${CORE_NETWORK}/"
 
-    if [ ! -d "$log_dir" ]; then
+    if [[ ! -d "$log_dir" ]]; then
         ascii
 
         error "Log folder does not exist."
@@ -16,7 +16,7 @@ utils_log ()
 
     local log_file=$(ls -t "${log_dir}" | head -n 1)
 
-    if [ ! -e "${log_dir}/${log_file}" ]; then
+    if [[ ! -e "${log_dir}/${log_file}" ]]; then
         ascii
 
         error "Log file does not exist."
