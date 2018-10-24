@@ -44,6 +44,7 @@ commander_config="${HOME}/.commander"
 
 . "${commander_dir}/modules/bootstrap.sh"
 . "${commander_dir}/modules/environment.sh"
+. "${commander_dir}/modules/modifications.sh"
 . "${commander_dir}/modules/versions.sh"
 . "${commander_dir}/modules/state.sh"
 . "${commander_dir}/modules/update.sh"
