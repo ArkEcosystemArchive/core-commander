@@ -6,6 +6,7 @@ check_for_modifications ()
     local replace="raw.githubusercontent.com"
     local host="${CORE_REPO/$search/$replace}"
     
+    cd "$CORE_DIR"
     local branch=$(git symbolic-ref --short -q HEAD)
 
     local local_checksum=$(sha256sum "${CORE_DIR}/$1" | awk '{ print $1 }')
