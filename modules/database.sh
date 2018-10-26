@@ -27,11 +27,7 @@ database_create ()
     # needed to avoid "could not connect to database template1" errors
     sudo -u postgres psql -c "CREATE USER $USER WITH PASSWORD 'password' CREATEDB;" | tee -a "$commander_log"
 
-    sudo -u postgres psql -c "CREATE USER $ARK_DB_USERNAME WITH PASSWORD '$ARK_DB_PASSWORD' CREATEDB;" | tee -a "$commander_log"
-
     createdb "$ARK_DB_DATABASE" | tee -a "$commander_log"
-
-    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $ARK_DB_DATABASE TO $ARK_DB_USERNAME;" | tee -a "$commander_log"
 
     wait_to_continue
 
