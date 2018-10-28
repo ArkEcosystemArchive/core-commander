@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - A new npm dependency `dotenv` has been added. When updating from a previous  
 version it is necessary to install it by executing `sudo npm install -g dotenv`  
 followed by `npm link dotenv` inside the commander directory.
+- When using `bip38` the password is no longer exposed in the process monitor.
+- Starting the relay/forger/explorer manually is now easier:
+    Relay:
+    `pm2 start --only ark-core-relay`
+    Forger without bip38 encryption:
+    `pm2 start --only ark-core-forger`
+    Forger with bip38 encryption:
+    `pm2 start --only ark-core-forger -- --password ark`
+    Explorer:
+    `pm2 start --only ark-core-explorer`
 
 ### Removed
 - Redis

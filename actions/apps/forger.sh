@@ -140,11 +140,8 @@ __forger_configure_bip38 ()
 
 __forger_start_with_bip38 ()
 {
-    local bip38=$(jq -r '.bip38' "$CORE_CONFIG/delegates.json")
-
     read -sp "Please enter your bip38 password: " password
-
-    pm2 start $commander_ecosystem --only ark-core-forger -- --bip38 "$bip38" --password "$password" >> "$commander_log" 2>&1
+    pm2 start $commander_ecosystem --only ark-core-forger -- --password "$password" >> "$commander_log" 2>&1
 }
 
 __forger_start_without_bip38 ()

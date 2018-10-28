@@ -1,12 +1,14 @@
 require('dotenv').config({ path: `${process.env.HOME}/.commander` })
 
-const parseArg = (key) => {
-    const index = process.argv.indexOf(key)
+const delegates = require(`${process.env.CORE_CONFIG}/delegates.json`)
+
+const getPasswordFromArgs = () => {
+    const index = process.argv.indexOf('--password')
     if (index !== -1) {
-        return `${key} ${process.argv[index + 1]}`
+        return process.argv[index + 1]
     }
 
-    return ''
+    return undefined
 }
 
 module.exports = {
@@ -25,11 +27,13 @@ module.exports = {
     args: `forger --data ${process.env.CORE_DATA}
                   --config ${process.env.CORE_CONFIG}
                   --token ${process.env.CORE_TOKEN}
-                  --network ${process.env.CORE_NETWORK}
-                  ${parseArg('--bip38')}
-                  ${parseArg('--password')}`,
+                  --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
-    min_uptime: '5m'
+    min_uptime: '5m',
+    env: {
+        ARK_FORGER_BIP38: delegates.bip38,
+        ARK_FORGER_PASSWORD: getPasswordFromArgs()
+    }
   }, {
     name: 'ark-explorer',
     script: `${process.env.EXPLORER_DIR}/express-server.js`,
