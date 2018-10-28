@@ -68,12 +68,12 @@ menu_main ()
     divider
 
     if [[ -d "$CORE_DIR" ]]; then
-        text_white "    A. Manage ARK Core"
+        text_white "    A. Manage Ark Core"
         text_white "    R. Manage Relay"
         text_white "    F. Manage Forger"
         text_white "    E. Manage Explorer"
     else
-        text_white "    I. Install ARK Core"
+        text_white "    I. Install Ark Core"
 
         divider
     fi

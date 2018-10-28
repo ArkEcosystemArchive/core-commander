@@ -51,7 +51,7 @@ ntp_install ()
         ntp_status
 
         if [[ "$STATUS_NTP" = "Off" ]]; then
-            error "NTP failed to start! It should be installed and running for ARK."
+            error "NTP failed to start! It should be installed and running for Ark."
             error "Check /etc/ntp.conf for any issues and correct them first! Exiting."
             exit 1
         fi

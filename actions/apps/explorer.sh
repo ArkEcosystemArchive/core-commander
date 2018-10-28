@@ -4,7 +4,7 @@ explorer_install ()
 {
     ascii
 
-    heading "Installing ARK Explorer..."
+    heading "Installing Ark Explorer..."
 
     sudo mkdir "$EXPLORER_DIR" >> "$commander_log" 2>&1
     sudo chown "$USER":"$USER" "$EXPLORER_DIR" >> "$commander_log" 2>&1
@@ -36,7 +36,7 @@ explorer_install ()
         return
     fi
 
-    success "Installed ARK Explorer!"
+    success "Installed Ark Explorer!"
 }
 
 explorer_uninstall ()
@@ -45,11 +45,11 @@ explorer_uninstall ()
 
     explorer_stop
 
-    heading "Uninstalling ARK Explorer..."
+    heading "Uninstalling Ark Explorer..."
 
     sudo rm -rf "$EXPLORER_DIR"
 
-    success "Uninstalled ARK Explorer!"
+    success "Uninstalled Ark Explorer!"
 }
 
 explorer_update ()
@@ -67,11 +67,11 @@ explorer_update ()
     if [[ "$remote_version" == "$local_version" ]]; then
         STATUS_EXPLORER_UPDATE="No"
 
-        info "You already have the latest ARK Explorer version that we support."
+        info "You already have the latest Ark Explorer version that we support."
     else
         STATUS_EXPLORER_UPDATE="Yes"
 
-        read -p "An update is available for ARK Explorer, do you want to install it? [Y/n] : " choice
+        read -p "An update is available for Ark Explorer, do you want to install it? [Y/n] : " choice
 
         if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             explorer_stop

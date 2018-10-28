@@ -4,12 +4,12 @@ menu_manage_explorer_help ()
 {
     ascii
 
-    text_yellow "    Install ARK Explorer (I)"
-    text_white "    installs the ARK blockchain explorer on your server."
+    text_yellow "    Install Ark Explorer (I)"
+    text_white "    installs the Ark blockchain explorer on your server."
     echo
 
-    text_yellow "    Start ARK Explorer (S)"
-    text_white "    starts the ARK blockchain explorer process (only visible if you have ARK explorer installed)."
+    text_yellow "    Start Ark Explorer (S)"
+    text_white "    starts the Ark blockchain explorer process (only visible if you have Ark Explorer installed)."
     echo
 
     text_yellow "    Show Log (L)"

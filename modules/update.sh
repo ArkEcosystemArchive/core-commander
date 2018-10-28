@@ -13,11 +13,11 @@ commander_update ()
     if [[ "$remote_version" == "$local_version" ]]; then
         STATUS_COMMANDER_UPDATE="No"
 
-        info "You already have the latest ARK Commander version that we support."
+        info "You already have the latest Ark Commander version that we support."
     else
         STATUS_COMMANDER_UPDATE="Yes"
 
-        read -p "An update is available for ARK Commander, do you want to install it? [Y/n] : " choice
+        read -p "An update is available for Ark Commander, do you want to install it? [Y/n] : " choice
 
         if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             heading "Starting Update..."
