@@ -3,7 +3,7 @@
 core_required ()
 {
     if [[ ! -d "$CORE_DIR" ]]; then
-        error "ARK Core needs to be installed for this action!"
+        error "Ark Core needs to be installed for this action!"
 
         press_to_continue
 
@@ -14,7 +14,7 @@ core_required ()
 core_not_required ()
 {
     if [[ -d "$CORE_DIR" ]]; then
-        error "ARK Core needs to be NOT installed for this action!"
+        error "Ark Core needs to be NOT installed for this action!"
 
         press_to_continue
 

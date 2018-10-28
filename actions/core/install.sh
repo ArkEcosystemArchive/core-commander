@@ -5,9 +5,9 @@ core_install ()
     ascii
 
     if [[ -d "$CORE_DIR" ]]; then
-        error "We found an existing ARK Core installation! Please use the uninstall option first."
+        error "We found an existing Ark Core installation! Please use the uninstall option first."
     else
-        heading "Installing ARK Core..."
+        heading "Installing Ark Core..."
 
         # Prepare
         sudo mkdir "$CORE_DIR" >> "$commander_log" 2>&1
@@ -24,6 +24,6 @@ core_install ()
 
         core_configure
 
-        success "Installed ARK Core!"
+        success "Installed Ark Core!"
     fi
 }

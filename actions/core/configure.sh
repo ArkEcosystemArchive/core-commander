@@ -7,7 +7,7 @@ core_configure ()
     local configured=false
 
     if [[ -d "$CORE_CONFIG" ]]; then
-        read -p "We found an ARK Core configuration, do you want to overwrite it? [y/N] : " choice
+        read -p "We found an Ark Core configuration, do you want to overwrite it? [y/N] : " choice
 
         if [[ "$choice" =~ ^(yes|y|Y) ]]; then
             __core_configure_pre
@@ -37,7 +37,7 @@ core_configure ()
     fi
 
     if [[ "$configured" = true ]]; then
-        read -p "ARK Core has been configured, would you like to start the relay? [Y/n] : " choice
+        read -p "Ark Core has been configured, would you like to start the relay? [Y/n] : " choice
 
         if [[ -z "$choice" || "$choice" =~ ^(yes|y|Y) ]]; then
             relay_start

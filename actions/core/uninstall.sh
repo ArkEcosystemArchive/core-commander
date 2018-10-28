@@ -4,7 +4,7 @@ core_uninstall ()
 {
     ascii
 
-    heading "Uninstalling ARK Core..."
+    heading "Uninstalling Ark Core..."
 
     forger_delete
 
@@ -25,5 +25,5 @@ core_uninstall ()
     sudo rm -rf "$CORE_DATA"
     success "Deleted Configuration!"
 
-    success "Uninstalled ARK Core!"
+    success "Uninstalled Ark Core!"
 }
