@@ -8,7 +8,7 @@ nodejs_install ()
     sudo rm -rf ~/{.npm,.forever,.node*,.cache,.nvm}
 
     sudo wget --quiet -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-    (echo "deb https://deb.nodesource.com/node_9.x $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nodesource.list) | tee -a "$commander_log"
+    (echo "deb https://deb.nodesource.com/node_10.x $(lsb_release -s -c) main" | sudo tee /etc/apt/sources.list.d/nodesource.list) | tee -a "$commander_log"
     sudo apt-get update >> "$commander_log" 2>&1
     sudo apt-get install nodejs -y | tee -a "$commander_log"
 
