@@ -39,7 +39,7 @@ database_create ()
 
     local databaseExists=$(psql -l | grep "${ARK_DB_DATABASE}" | wc -l)
 
-    if [[ $databaseExists = 1 ]]; then
+    if [[ $databaseExists == 1 ]]; then
         read -p "The database ${ARK_DB_DATABASE} already exists, do you want to overwrite it? [y/N] : " choice
 
         if [[ "$choice" =~ ^(yes|y|Y) ]]; then
