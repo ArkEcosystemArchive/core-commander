@@ -2,21 +2,38 @@
 
 setup_environment_file ()
 {
-    if [[ ! -e "${CORE_DATA}/.env" ]]; then
-        mkdir "${HOME}/.ark"
-        local envFile="${CORE_DATA}/.env"
-        touch "$envFile"
+    local envFile="${CORE_DATA}/.env"
 
-        echo "ARK_LOG_LEVEL=debug" >> "$envFile" 2>&1
-
-        echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
-        echo "ARK_DB_PORT=5432" >> "$envFile" 2>&1
-        echo "ARK_DB_USERNAME=${USER}" >> "$envFile" 2>&1
-        echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
-        echo "ARK_DB_DATABASE=ark_devnet" >> "$envFile" 2>&1
+    if [[ ! -e "${envFile}" ]]; then
+        mkdir -p "${HOME}/.ark"
+        touch "${envFile}"
     fi
 
-    . "${CORE_DATA}/.env"
+    if ! grep -q "ARK_LOG_LEVEL" "${envFile}"; then
+        echo "ARK_LOG_LEVEL=debug" >> "$envFile" 2>&1
+    fi
+
+    if ! grep -q "ARK_DB_HOST" "${envFile}"; then
+        echo "ARK_DB_HOST=localhost" >> "$envFile" 2>&1
+    fi
+
+    if ! grep -q "ARK_DB_PORT" "${envFile}"; then
+        echo "ARK_DB_PORT=5432" >> "$envFile" 2>&1
+    fi
+
+    if ! grep -q "ARK_DB_USERNAME" "${envFile}"; then
+        echo "ARK_DB_USERNAME=${USER}" >> "$envFile" 2>&1
+    fi
+
+    if ! grep -q "ARK_DB_PASSWORD" "${envFile}"; then
+        echo "ARK_DB_PASSWORD=password" >> "$envFile" 2>&1
+    fi
+
+    if ! grep -q "ARK_DB_DATABASE" "${envFile}"; then
+        echo "ARK_DB_DATABASE=ark_${CORE_NETWORK}" >> "$envFile" 2>&1
+    fi
+
+    . "${envFile}"
 }
 
 setup_environment ()
