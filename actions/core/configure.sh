@@ -73,18 +73,21 @@ __core_configure_network ()
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
+                __core_configure_branch "master"
                 break
             ;;
             "devnet")
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
+                __core_configure_branch "develop"
                 break
             ;;
             "testnet")
                 __core_configure_core "testnet"
                 __core_configure_commander "testnet"
                 __core_configure_environment "testnet"
+                __core_configure_branch "develop"
                 break
             ;;
             *)
@@ -146,4 +149,16 @@ __core_configure_environment ()
     grep -q '^ARK_JSONRPC_PORT' "$envFile" 2>&1 || echo 'ARK_JSONRPC_PORT=8080' >> "$envFile" 2>&1
 
     success "Created Environment configuration!"
+}
+
+__core_configure_branch ()
+{
+    heading "Changing git branch..."
+
+    cd "$CORE_DIR"
+    git reset --hard | tee -a "$commander_log"
+    git pull | tee -a "$commander_log"
+    git checkout "$1" | tee -a "$commander_log"
+
+    success "Changed git branch!"
 }
