@@ -6,7 +6,7 @@ core_configure_log_level ()
 
     . "$envFile"
 
-    read -p "Enter the log level, or press ENTER for the default [$ARK_LOG_LEVEL]: " inputLevel
+    read -p "Enter the log level (debug, info, warning), or press ENTER for the default [$ARK_LOG_LEVEL]: " inputLevel
 
     if [[ ! -z "$inputLevel" ]]; then
         sed -i -e "s/ARK_LOG_LEVEL=$ARK_LOG_LEVEL/ARK_LOG_LEVEL=$inputLevel/g" "$envFile"
