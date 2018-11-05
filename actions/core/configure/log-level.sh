@@ -10,24 +10,26 @@ core_configure_log_level ()
 
     info "Which log level would you like to configure?"
 
-    validLevels=("debug" "info" "warning" "error")
+    local validLevels=("debug" "info" "warning" "error")
+
+    local inputLevel=$ARK_LOG_LEVEL
 
     select opt in "${validLevels[@]}"; do
         case "$opt" in
             "debug")
-                local inputLevel=debug
+                inputLevel=debug
                 break
             ;;
             "info")
-                local inputLevel=info
+                inputLevel=info
                 break
             ;;
             "warning")
-                local inputLevel=warning
+                inputLevel=warning
                 break
             ;;
             "error")
-                local inputLevel=error
+                inputLevel=error
                 break
             ;;
             *)
@@ -36,7 +38,9 @@ core_configure_log_level ()
         esac
     done
 
-    sed -i -e "s/ARK_LOG_LEVEL=$ARK_LOG_LEVEL/ARK_LOG_LEVEL=$inputLevel/g" "$envFile"
+    if [[ ! "$ARK_LOG_LEVEL" == "$inputLevel" ]]; then
+        sed -i -e "s/ARK_LOG_LEVEL=$ARK_LOG_LEVEL/ARK_LOG_LEVEL=$inputLevel/g" "$envFile"
+    fi
 
     . "$envFile"
 }
