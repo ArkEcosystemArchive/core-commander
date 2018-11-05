@@ -38,7 +38,7 @@ core_configure_log_level ()
         esac
     done
 
-    if [[ ! "$ARK_LOG_LEVEL" == "$inputLevel" ]]; then
+    if [[ "$ARK_LOG_LEVEL" != "$inputLevel" ]]; then
         sed -i -e "s/ARK_LOG_LEVEL=$ARK_LOG_LEVEL/ARK_LOG_LEVEL=$inputLevel/g" "$envFile"
     fi
 
