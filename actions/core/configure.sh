@@ -18,6 +18,8 @@ core_configure ()
 
             core_configure_database
 
+            core_configure_log_level
+
             __core_configure_post
 
             configured=true
@@ -30,6 +32,8 @@ core_configure ()
         __core_configure_network
 
         core_configure_database
+
+        core_configure_log_level
 
         __core_configure_post
 
