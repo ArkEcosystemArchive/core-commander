@@ -2,6 +2,8 @@
 
 core_configure_database ()
 {
+    ascii
+
     local envFile="${CORE_DATA}/.env"
 
     . "$envFile"

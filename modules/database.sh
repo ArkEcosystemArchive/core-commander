@@ -20,6 +20,8 @@ database_destroy ()
 
 database_create ()
 {
+    ascii
+
     heading "Creating Database..."
 
     wait_to_continue
