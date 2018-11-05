@@ -63,6 +63,8 @@ __core_configure_post ()
 
 __core_configure_network ()
 {
+    ascii
+
     info "Which network would you like to configure?"
 
     validNetworks=("mainnet" "devnet" "testnet")

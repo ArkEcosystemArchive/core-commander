@@ -24,6 +24,8 @@ core_install ()
 
         core_configure
 
+        ascii
+
         success "Installed Ark Core!"
     fi
 }
