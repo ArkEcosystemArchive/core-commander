@@ -15,7 +15,7 @@ core_update ()
     if [[ "$remote_version" == "$local_version" ]]; then
         STATUS_CORE_UPDATE="No"
 
-        info "You already have the latest Ark Core version that we support."
+        info "You already have the latest supported Ark Core version."
     else
         STATUS_CORE_UPDATE="Yes"
 
