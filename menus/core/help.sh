@@ -7,7 +7,7 @@ menu_manage_core_help ()
     divider
 
     text_yellow "    Update Ark (U)"
-    text_white "    update Ark core if a new version is available."
+    text_white "    update Ark Core if a new version is available."
     echo
 
     text_yellow "    Uninstall Ark (P)"
