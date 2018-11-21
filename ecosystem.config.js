@@ -20,7 +20,8 @@ module.exports = {
                  --token ${process.env.CORE_TOKEN}
                  --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
-    min_uptime: '5m'
+    min_uptime: '5m',
+    kill_timeout: 30000
   }, {
     name: 'ark-core-forger',
     script: `${process.env.CORE_DIR}/packages/core/bin/ark`,
@@ -30,6 +31,7 @@ module.exports = {
                   --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
     min_uptime: '5m',
+    kill_timeout: 30000,
     env: {
         ARK_FORGER_BIP38: delegates.bip38,
         ARK_FORGER_PASSWORD: getPasswordFromArgs()
@@ -40,6 +42,7 @@ module.exports = {
     args: `--name ark-explorer`,
     max_restarts: 5,
     min_uptime: '5m',
+    kill_timeout: 30000,
     env: {
         EXPLORER_HOST: '0.0.0.0',
         EXPLORER_PORT: 4200
