@@ -2,8 +2,6 @@
 
 refresh_state ()
 {
-    get_versions
-
     ntp_status
     pgsql_status
     relay_status

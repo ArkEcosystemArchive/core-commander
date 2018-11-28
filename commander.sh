@@ -117,6 +117,8 @@ main ()
 
     if [[ -d "$EXPLORER_DIR" ]]; then
         explorer_update
+    else
+        STATUS_EXPLORER_UPDATE="n/a"
     fi
 
     while true; do
