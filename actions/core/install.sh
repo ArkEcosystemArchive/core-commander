@@ -19,10 +19,11 @@ core_install ()
         cd "$CORE_DIR"
         git checkout develop | tee -a "$commander_log"
 
+        # Configure
+        core_configure
+
         # Install
         lerna bootstrap | tee -a "$commander_log"
-
-        core_configure
 
         success "Installed Ark Core!"
     fi
