@@ -67,7 +67,7 @@ explorer_update ()
     if [[ "$remote_version" == "$local_version" ]]; then
         STATUS_EXPLORER_UPDATE="No"
 
-        info "You already have the latest Ark Explorer version that we support."
+        info "You already have the latest supported Ark Explorer version."
     else
         STATUS_EXPLORER_UPDATE="Yes"
 

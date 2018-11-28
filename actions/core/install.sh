@@ -25,6 +25,8 @@ core_install ()
         # Install
         lerna bootstrap | tee -a "$commander_log"
 
+        ascii
+
         success "Installed Ark Core!"
     fi
 }

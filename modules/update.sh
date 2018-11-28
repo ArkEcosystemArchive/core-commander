@@ -13,7 +13,7 @@ commander_update ()
     if [[ "$remote_version" == "$local_version" ]]; then
         STATUS_COMMANDER_UPDATE="No"
 
-        info "You already have the latest Ark Commander version that we support."
+        info "You already have the latest supported Ark Commander version."
     else
         STATUS_COMMANDER_UPDATE="Yes"
 

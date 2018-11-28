@@ -2,6 +2,8 @@
 
 core_configure_database ()
 {
+    ascii
+
     local envFile="${CORE_DATA}/.env"
 
     . "$envFile"
@@ -30,6 +32,8 @@ core_configure_database ()
 
     if [[ ! -z "$inputDatabase" ]]; then
         sed -i -e "s/ARK_DB_DATABASE=$ARK_DB_DATABASE/ARK_DB_DATABASE=$inputDatabase/g" "$envFile"
+    else
+        sed -i -e "s/ARK_DB_DATABASE=$ARK_DB_DATABASE/ARK_DB_DATABASE=ark_${CORE_NETWORK}/g" "$envFile"
     fi
 
     . "$envFile"

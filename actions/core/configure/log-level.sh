@@ -2,13 +2,43 @@
 
 core_configure_log_level ()
 {
+    ascii
+
     local envFile="${CORE_DATA}/.env"
 
     . "$envFile"
 
-    read -p "Enter the log level, or press ENTER for the default [$ARK_LOG_LEVEL]: " inputLevel
+    info "Which log level would you like to configure?"
 
-    if [[ ! -z "$inputLevel" ]]; then
+    local validLevels=("debug" "info" "warning" "error")
+
+    local inputLevel=$ARK_LOG_LEVEL
+
+    select opt in "${validLevels[@]}"; do
+        case "$opt" in
+            "debug")
+                inputLevel=debug
+                break
+            ;;
+            "info")
+                inputLevel=info
+                break
+            ;;
+            "warning")
+                inputLevel=warning
+                break
+            ;;
+            "error")
+                inputLevel=error
+                break
+            ;;
+            *)
+                echo "Invalid option $REPLY"
+            ;;
+        esac
+    done
+
+    if [[ "$ARK_LOG_LEVEL" != "$inputLevel" ]]; then
         sed -i -e "s/ARK_LOG_LEVEL=$ARK_LOG_LEVEL/ARK_LOG_LEVEL=$inputLevel/g" "$envFile"
     fi
 
