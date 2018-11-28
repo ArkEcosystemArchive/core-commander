@@ -63,6 +63,8 @@ __core_configure_pre ()
 __core_configure_post ()
 {
     database_create
+
+    lerna bootstrap | tee -a "$commander_log"
 }
 
 __core_configure_network ()
@@ -76,24 +78,24 @@ __core_configure_network ()
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
             "mainnet")
+                __core_configure_branch "master"
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
-                __core_configure_branch "master"
                 break
             ;;
             "devnet")
+                __core_configure_branch "develop"
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
-                __core_configure_branch "develop"
                 break
             ;;
             "testnet")
+                __core_configure_branch "develop"
                 __core_configure_core "testnet"
                 __core_configure_commander "testnet"
                 __core_configure_environment "testnet"
-                __core_configure_branch "develop"
                 break
             ;;
             *)
