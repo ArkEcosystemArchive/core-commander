@@ -4,7 +4,7 @@ forger_start ()
 {
     ascii
 
-    if [[ "$CORE_BRANCH" != "freezer" ]]; then
+    if [[ "$CORE_NETWORK" != "mainnet" ]]; then
         heading "Starting Forger..."
 
         local bip38=$(jq -r '.bip38 // empty' "$CORE_CONFIG/delegates.json")
@@ -25,7 +25,7 @@ forger_restart ()
 {
     ascii
 
-    if [[ "$CORE_BRANCH" != "freezer" ]]; then
+    if [[ "$CORE_NETWORK" != "mainnet" ]]; then
         heading "Restarting Forger..."
 
         pm2 restart $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
