@@ -110,6 +110,12 @@ setup_environment ()
 
         . "$commander_config"
 
+        if [[ "$CORE_NETWORK" = "mainnet" ]]; then
+            sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=freezer/g" "$commander_config"
+
+            . "$commander_config"
+        fi
+
         setup_environment_file
     fi
 }
