@@ -18,6 +18,8 @@ forger_start ()
         forger_status
 
         success "Started Forger!"
+    else
+        heading "Forger is disabled!@"
     fi
 }
 
@@ -33,6 +35,8 @@ forger_restart ()
         forger_status
 
         success "Restarted Forger!"
+    else
+        heading "Forger is disabled!@"
     fi
 }
 
