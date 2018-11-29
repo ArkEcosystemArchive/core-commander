@@ -167,6 +167,7 @@ __core_configure_branch ()
     heading "Changing git branch..."
 
     sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$envFile"
+    . "${CORE_DATA}/.env"
 
     cd "$CORE_DIR"
     git reset --hard | tee -a "$commander_log"
