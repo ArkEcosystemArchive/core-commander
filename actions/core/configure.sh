@@ -63,6 +63,11 @@ __core_configure_pre ()
 __core_configure_post ()
 {
     database_create
+
+    lerna bootstrap | tee -a "$commander_log"
+
+    # Make sure the git commit hash is not modified by a local yarn.lock
+    git reset --hard | tee -a "$commander_log"
 }
 
 __core_configure_network ()
@@ -76,18 +81,22 @@ __core_configure_network ()
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
             "mainnet")
+                # TODO: switch freezer to master on release date
+                __core_configure_branch "freezer"
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
                 break
             ;;
             "devnet")
+                __core_configure_branch "develop"
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
                 break
             ;;
             "testnet")
+                __core_configure_branch "develop"
                 __core_configure_core "testnet"
                 __core_configure_commander "testnet"
                 __core_configure_environment "testnet"
@@ -152,4 +161,19 @@ __core_configure_environment ()
     grep -q '^ARK_JSONRPC_PORT' "$envFile" 2>&1 || echo 'ARK_JSONRPC_PORT=8080' >> "$envFile" 2>&1
 
     success "Created Environment configuration!"
+}
+
+__core_configure_branch ()
+{
+    heading "Changing git branch..."
+
+    sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$commander_config"
+    . "${CORE_DATA}/.env"
+
+    cd "$CORE_DIR"
+    git reset --hard | tee -a "$commander_log"
+    git pull | tee -a "$commander_log"
+    git checkout "$1" | tee -a "$commander_log"
+
+    success "Changed git branch!"
 }
