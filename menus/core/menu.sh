@@ -5,6 +5,7 @@ menu_manage_core ()
     ascii
 
     forger_status
+    relay_status
 
     text_white "    U. Update Ark Core"
     text_white "    P. Uninstall Ark Core"

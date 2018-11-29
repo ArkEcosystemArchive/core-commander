@@ -26,4 +26,6 @@ core_uninstall ()
     success "Deleted Configuration!"
 
     success "Uninstalled Ark Core!"
+
+    core_version
 }

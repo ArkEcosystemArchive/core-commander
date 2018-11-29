@@ -55,6 +55,8 @@ core_update ()
 
             success "Update OK!"
             STATUS_CORE_UPDATE="No"
+
+            core_version
         fi
     fi
 }

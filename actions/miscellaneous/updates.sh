@@ -37,4 +37,6 @@ miscellaneous_install_updates ()
             press_to_continue
         fi
     fi
+
+    get_versions
 }
