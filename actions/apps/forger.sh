@@ -4,32 +4,36 @@ forger_start ()
 {
     ascii
 
-    heading "Starting Forger..."
+    if [[ "$CORE_BRANCH" != "freezer" ]]; then
+        heading "Starting Forger..."
 
-    local bip38=$(jq -r '.bip38 // empty' "$CORE_CONFIG/delegates.json")
+        local bip38=$(jq -r '.bip38 // empty' "$CORE_CONFIG/delegates.json")
 
-    if [[ -z "$bip38" ]]; then
-        __forger_start_without_bip38
-    else
-        __forger_start_with_bip38
+        if [[ -z "$bip38" ]]; then
+            __forger_start_without_bip38
+        else
+            __forger_start_with_bip38
+        fi
+
+        forger_status
+
+        success "Started Forger!"
     fi
-
-    forger_status
-
-    success "Started Forger!"
 }
 
 forger_restart ()
 {
     ascii
 
-    heading "Restarting Forger..."
+    if [[ "$CORE_BRANCH" != "freezer" ]]; then
+        heading "Restarting Forger..."
 
-    pm2 restart $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
+        pm2 restart $commander_ecosystem --only ark-core-forger >> "$commander_log" 2>&1
 
-    forger_status
+        forger_status
 
-    success "Restarted Forger!"
+        success "Restarted Forger!"
+    fi
 }
 
 forger_stop ()
