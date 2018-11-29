@@ -19,7 +19,7 @@ forger_start ()
 
         success "Started Forger!"
     else
-        heading "Forger is disabled!@"
+        warning "Forger is disabled!"
     fi
 }
 
@@ -36,7 +36,7 @@ forger_restart ()
 
         success "Restarted Forger!"
     else
-        heading "Forger is disabled!@"
+        warning "Forger is disabled!"
     fi
 }
 
