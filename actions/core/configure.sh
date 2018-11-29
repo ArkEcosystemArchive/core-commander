@@ -81,7 +81,8 @@ __core_configure_network ()
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
             "mainnet")
-                __core_configure_branch "master"
+                # TODO: switch freezer to master on release date
+                __core_configure_branch "freezer"
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
@@ -166,7 +167,7 @@ __core_configure_branch ()
 {
     heading "Changing git branch..."
 
-    sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$envFile"
+    sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$commander_config"
     . "${CORE_DATA}/.env"
 
     cd "$CORE_DIR"
