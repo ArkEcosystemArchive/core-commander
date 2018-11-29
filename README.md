@@ -17,7 +17,7 @@ bash commander.sh
 ## Development
 
 ```sh
-git clone https://github.com/ArkEcosystem/core-commander -b develop
+git clone https://github.com/ArkEcosystem/core-commander
 cd core-commander/.dev/{operating_system}
 vagrant up
 vagrant ssh

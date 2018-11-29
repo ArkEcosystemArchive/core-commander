@@ -52,6 +52,7 @@ setup_environment ()
         touch "$commander_config"
 
         echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
+        echo "CORE_BRANCH=develop" >> "$commander_config" 2>&1
         echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
         echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
         echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1

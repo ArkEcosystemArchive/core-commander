@@ -17,7 +17,7 @@ core_install ()
         # Clone
         git clone "$CORE_REPO" "$CORE_DIR" | tee -a "$commander_log"
         cd "$CORE_DIR"
-        git checkout develop | tee -a "$commander_log"
+        git checkout "$CORE_BRANCH" | tee -a "$commander_log"
 
         # Configure
         core_configure
