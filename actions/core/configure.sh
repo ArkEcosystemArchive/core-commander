@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+core_configure_reset ()
+{
+    read -p "Are you sure you would like to reset the configuration? [y/N] : " choice
+
+    if [[ "$choice" =~ ^(yes|y|Y) ]]; then
+        info "Resetting configuration..."
+
+        if [[ ! -d "$CORE_DATA" ]]; then
+            mkdir "$CORE_DATA"
+        fi
+
+        rm -rf "$CORE_CONFIG"
+
+        cp -r "${CORE_DIR}/packages/core/lib/config/${CORE_NETWORK}" "$CORE_CONFIG"
+        cp "${CORE_DIR}/packages/crypto/lib/networks/${CORE_TOKEN}/${CORE_NETWORK}.json" "$CORE_CONFIG/network.json"
+
+        info "Reset configuration!"
+    else
+        warning "Skipping configuration reset..."
+    fi
+}
+
 core_configure ()
 {
     ascii
