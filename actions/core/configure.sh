@@ -2,7 +2,7 @@
 
 core_configure_reset ()
 {
-    read -p "Are you sure you would like to reset the configuration? [y/N] : " choice
+    read -p "Are you sure you want to reset the configuration? [y/N] : " choice
 
     if [[ "$choice" =~ ^(yes|y|Y) ]]; then
         info "Resetting configuration..."
