@@ -25,7 +25,7 @@ menu_manage_commander_help ()
     echo
 
     text_yellow "    Configure Token Network (N)"
-    text_white "    lets you configure a different custom token network (devnet by default)."
+    text_white "    lets you configure a different custom token network (mainnet by default)."
     echo
 
     text_yellow "    Configure Explorer Repository (S)"

@@ -52,12 +52,12 @@ setup_environment ()
         touch "$commander_config"
 
         echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
-        echo "CORE_BRANCH=develop" >> "$commander_config" 2>&1
+        echo "CORE_BRANCH=master" >> "$commander_config" 2>&1
         echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
         echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
         echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1
         echo "CORE_TOKEN=ark" >> "$commander_config" 2>&1
-        echo "CORE_NETWORK=devnet" >> "$commander_config" 2>&1
+        echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config" 2>&1
         echo "EXPLORER_DIR=${HOME}/ark-explorer" >> "$commander_config" 2>&1
 
@@ -77,7 +77,7 @@ setup_environment ()
         fi
 
         if ! grep -q "CORE_BRANCH" "${commander_config}"; then
-            echo "CORE_BRANCH=develop" >> "$commander_config" 2>&1
+            echo "CORE_BRANCH=master" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_DIR" "${commander_config}"; then
@@ -97,7 +97,7 @@ setup_environment ()
         fi
 
         if ! grep -q "CORE_NETWORK" "${commander_config}"; then
-            echo "CORE_NETWORK=devnet" >> "$commander_config" 2>&1
+            echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "EXPLORER_REPO" "${commander_config}"; then
@@ -109,12 +109,6 @@ setup_environment ()
         fi
 
         . "$commander_config"
-
-        if [[ "$CORE_NETWORK" = "mainnet" ]]; then
-            sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=freezer/g" "$commander_config"
-
-            . "$commander_config"
-        fi
 
         setup_environment_file
     fi

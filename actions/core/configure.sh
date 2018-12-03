@@ -86,6 +86,7 @@ __core_configure_post ()
 {
     database_create
 
+    lerna clean --yes
     lerna bootstrap | tee -a "$commander_log"
 
     # Make sure the git commit hash is not modified by a local yarn.lock
@@ -103,8 +104,7 @@ __core_configure_network ()
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
             "mainnet")
-                # TODO: switch freezer to master on release date
-                __core_configure_branch "freezer"
+                __core_configure_branch "master"
                 __core_configure_core "mainnet"
                 __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
