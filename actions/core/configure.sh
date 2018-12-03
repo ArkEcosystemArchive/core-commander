@@ -64,6 +64,7 @@ __core_configure_post ()
 {
     database_create
 
+    lerna clean --yes
     lerna bootstrap | tee -a "$commander_log"
 
     # Make sure the git commit hash is not modified by a local yarn.lock
