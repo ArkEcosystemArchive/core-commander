@@ -49,6 +49,13 @@ menu_manage_core_parse_args ()
 
             menu_manage_core
         ;;
+        r|R)
+            core_configure_reset
+
+            press_to_continue
+
+            menu_manage_core
+        ;;
         h|H)
             menu_manage_core_help
         ;;
