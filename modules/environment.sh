@@ -57,7 +57,7 @@ setup_environment ()
         echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
         echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1
         echo "CORE_TOKEN=ark" >> "$commander_config" 2>&1
-        echo "CORE_NETWORK=devnet" >> "$commander_config" 2>&1
+        echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config" 2>&1
         echo "EXPLORER_DIR=${HOME}/ark-explorer" >> "$commander_config" 2>&1
 
@@ -97,7 +97,7 @@ setup_environment ()
         fi
 
         if ! grep -q "CORE_NETWORK" "${commander_config}"; then
-            echo "CORE_NETWORK=devnet" >> "$commander_config" 2>&1
+            echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "EXPLORER_REPO" "${commander_config}"; then
