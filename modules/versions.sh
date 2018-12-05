@@ -13,7 +13,7 @@ core_version ()
 {
     if [[ -d "$CORE_DIR" ]]; then
         cd "$CORE_DIR"
-        VERSION_CORE=$(git rev-parse --short HEAD)
+        VERSION_CORE=$(git rev-parse --short=8 HEAD)
     else
         VERSION_CORE="n/a"
     fi
