@@ -14,7 +14,7 @@ const getPasswordFromArgs = () => {
 module.exports = {
   apps : [{
     name: 'ark-core-relay',
-    script: `${process.env.CORE_DIR}/packages/core/bin/ark`,
+    script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
     args: `relay --data ${process.env.CORE_DATA}
                  --config ${process.env.CORE_CONFIG}
                  --token ${process.env.CORE_TOKEN}
@@ -24,7 +24,7 @@ module.exports = {
     kill_timeout: 30000
   }, {
     name: 'ark-core-forger',
-    script: `${process.env.CORE_DIR}/packages/core/bin/ark`,
+    script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
     args: `forger --data ${process.env.CORE_DATA}
                   --config ${process.env.CORE_CONFIG}
                   --token ${process.env.CORE_TOKEN}
