@@ -49,6 +49,11 @@ core_update ()
             check_for_modifications "packages/core/lib/config/${CORE_NETWORK}/plugins.js" "${CORE_CONFIG}/plugins.js"
             check_for_modifications "packages/crypto/lib/networks/${CORE_TOKEN}/${CORE_NETWORK}.json" "${CORE_CONFIG}/network.json"
 
+            # Make sure we have the latest peers lists and sources
+            rm -f "${CORE_CONFIG}/peers.json"
+            rm -f "${CORE_CONFIG}/peers_backup.json"
+            cp -r "${CORE_DIR}/packages/core/lib/config/${CORE_NETWORK}/peers.json" "${CORE_CONFIG}/peers.json"
+
             if [[ "$relay_on" = "On" ]]; then
                 relay_start
             fi
