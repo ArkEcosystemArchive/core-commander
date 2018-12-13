@@ -179,8 +179,8 @@ __core_configure_environment ()
     grep -q '^ARK_GRAPHQL_HOST' "$envFile" 2>&1 || echo 'ARK_GRAPHQL_HOST=0.0.0.0' >> "$envFile" 2>&1
     grep -q '^ARK_GRAPHQL_PORT' "$envFile" 2>&1 || echo 'ARK_GRAPHQL_PORT=4005' >> "$envFile" 2>&1
 
-    grep -q '^ARK_JSONRPC_HOST' "$envFile" 2>&1 || echo 'ARK_JSONRPC_HOST=0.0.0.0' >> "$envFile" 2>&1
-    grep -q '^ARK_JSONRPC_PORT' "$envFile" 2>&1 || echo 'ARK_JSONRPC_PORT=8080' >> "$envFile" 2>&1
+    grep -q '^ARK_JSON_RPC_HOST' "$envFile" 2>&1 || echo 'ARK_JSON_RPC_HOST=0.0.0.0' >> "$envFile" 2>&1
+    grep -q '^ARK_JSON_RPC_PORT' "$envFile" 2>&1 || echo 'ARK_JSON_RPC_PORT=8080' >> "$envFile" 2>&1
 
     success "Created Environment configuration!"
 }
