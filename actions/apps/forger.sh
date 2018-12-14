@@ -99,7 +99,7 @@ __forger_configure_plain ()
     read -sp "Please enter your delegate secret: " inputSecret
     echo
 
-    $(node "$CORE_DIR/packages/core/bin/ark" forger-plain --config "$CORE_CONFIG" --secret "$inputSecret")
+    $(node "$CORE_DIR/packages/core/dist/index.js" forger-plain --config "$CORE_CONFIG" --secret "$inputSecret")
 
     local status=$?
 
@@ -123,7 +123,7 @@ __forger_configure_bip38 ()
 
     warning "Hang in there while we encrypt your secret..."
 
-    $(node "$CORE_DIR/packages/core/bin/ark" forger-bip38 --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" --secret "$inputSecret" --password "$inputBip38")
+    $(node "$CORE_DIR/packages/core/dist/index.js" forger-bip38 --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" --secret "$inputSecret" --password "$inputBip38")
 
     local status=$?
 
