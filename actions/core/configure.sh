@@ -13,8 +13,8 @@ core_configure_reset ()
 
         rm -rf "$CORE_CONFIG"
 
-        cp -r "${CORE_DIR}/packages/core/lib/config/${CORE_NETWORK}" "$CORE_CONFIG"
-        cp "${CORE_DIR}/packages/crypto/lib/networks/${CORE_TOKEN}/${CORE_NETWORK}.json" "$CORE_CONFIG/network.json"
+        cp -r "${CORE_DIR}/packages/core/src/config/${CORE_NETWORK}" "$CORE_CONFIG"
+        cp "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/${CORE_NETWORK}.json" "$CORE_CONFIG/network.json"
 
         info "Reset configuration!"
     else
@@ -138,8 +138,8 @@ __core_configure_core ()
         mkdir "$CORE_DATA"
     fi
 
-    cp -r "${CORE_DIR}/packages/core/lib/config/$1" "$CORE_CONFIG"
-    cp "${CORE_DIR}/packages/crypto/lib/networks/${CORE_TOKEN}/$1.json" "$CORE_CONFIG/network.json"
+    cp -r "${CORE_DIR}/packages/core/src/config/$1" "$CORE_CONFIG"
+    cp "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1.json" "$CORE_CONFIG/network.json"
 }
 
 __core_configure_commander ()
