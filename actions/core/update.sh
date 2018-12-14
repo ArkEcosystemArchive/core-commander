@@ -40,7 +40,6 @@ core_update ()
             git reset --hard | tee -a "$commander_log"
             git checkout "$CORE_BRANCH" | tee -a "$commander_log"
             git pull | tee -a "$commander_log"
-            lerna clean --yes
             yarn setup
 
             # Make sure the git commit hash is not modified by a local yarn.lock
