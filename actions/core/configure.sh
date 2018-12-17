@@ -135,7 +135,7 @@ __core_configure_core ()
     cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_CONFIG}"
 
     # Network Configuration
-    cp -rf "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1" "${CORE_CONFIG}"
+    cp -rf "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1/." "${CORE_CONFIG}"
     rm -f "${CORE_CONFIG}/index.ts"
 }
 
