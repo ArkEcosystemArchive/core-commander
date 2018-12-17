@@ -123,7 +123,7 @@ __forger_configure_bip38 ()
 
     warning "Hang in there while we encrypt your secret..."
 
-    $(node "$CORE_DIR/packages/core/dist/index.js" forger-bip38 --config "$CORE_CONFIG" --token "$CORE_TOKEN" --network "$CORE_NETWORK" --secret "$inputSecret" --password "$inputBip38")
+    $(node "$CORE_DIR/packages/core/dist/index.js" forger-bip38 --config "$CORE_CONFIG" --secret "$inputSecret" --password "$inputBip38")
 
     local status=$?
 
