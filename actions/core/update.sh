@@ -47,11 +47,6 @@ core_update ()
 
             check_for_modifications "packages/core/src/config/${CORE_NETWORK}/plugins.js" "${CORE_CONFIG}/plugins.js"
 
-            # Make sure we have the latest network configuration
-            cp -f "packages/crypto/src/networks/${CORE_TOKEN}/${CORE_NETWORK}/network.json" "${CORE_CONFIG}/network.json"
-            cp -f "packages/crypto/src/networks/${CORE_TOKEN}/${CORE_NETWORK}/milestones.json" "${CORE_CONFIG}/milestones.json"
-            cp -f "packages/crypto/src/networks/${CORE_TOKEN}/${CORE_NETWORK}/exceptions.json" "${CORE_CONFIG}/exceptions.json"
-
             # Make sure we have the latest peers lists and sources
             rm -f "${CORE_CONFIG}/peers.json"
             rm -f "${CORE_CONFIG}/peers_backup.json"
