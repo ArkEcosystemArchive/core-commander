@@ -103,7 +103,7 @@ __core_configure_network ()
                 break
             ;;
             "devnet")
-                __core_configure_branch "feat/milestones"
+                __core_configure_branch "develop"
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
