@@ -103,7 +103,7 @@ __core_configure_network ()
                 break
             ;;
             "devnet")
-                __core_configure_branch "develop"
+                __core_configure_branch "feat/milestones"
                 __core_configure_core "devnet"
                 __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
@@ -132,10 +132,10 @@ __core_configure_core ()
     fi
 
     # Core Configuration
-    cp -r "${CORE_DIR}/packages/core/src/config/$1" "${CORE_CONFIG}"
+    cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_CONFIG}"
 
     # Network Configuration
-    cp -r "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1" "${CORE_CONFIG}"
+    cp -rf "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1" "${CORE_CONFIG}"
     rm -f "${CORE_CONFIG}/index.ts"
 }
 
