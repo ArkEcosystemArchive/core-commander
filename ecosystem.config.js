@@ -16,9 +16,7 @@ module.exports = {
     name: 'ark-core-relay',
     script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
     args: `relay --data ${process.env.CORE_DATA}
-                 --config ${process.env.CORE_CONFIG}
-                 --token ${process.env.CORE_TOKEN}
-                 --network ${process.env.CORE_NETWORK}`,
+                 --config ${process.env.CORE_CONFIG}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000
@@ -26,9 +24,7 @@ module.exports = {
     name: 'ark-core-forger',
     script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
     args: `forger --data ${process.env.CORE_DATA}
-                  --config ${process.env.CORE_CONFIG}
-                  --token ${process.env.CORE_TOKEN}
-                  --network ${process.env.CORE_NETWORK}`,
+                  --config ${process.env.CORE_CONFIG}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000,
