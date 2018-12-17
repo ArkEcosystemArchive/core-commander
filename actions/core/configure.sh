@@ -7,14 +7,7 @@ core_configure_reset ()
     if [[ "$choice" =~ ^(yes|y|Y) ]]; then
         info "Resetting configuration..."
 
-        if [[ ! -d "$CORE_DATA" ]]; then
-            mkdir "$CORE_DATA"
-        fi
-
-        rm -rf "$CORE_CONFIG"
-
-        cp -r "${CORE_DIR}/packages/core/src/config/${CORE_NETWORK}" "$CORE_CONFIG"
-        cp "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/${CORE_NETWORK}.json" "$CORE_CONFIG/network.json"
+        __core_configure_core "${CORE_NETWORK}"
 
         info "Reset configuration!"
     else
@@ -138,8 +131,12 @@ __core_configure_core ()
         mkdir "$CORE_DATA"
     fi
 
-    cp -r "${CORE_DIR}/packages/core/src/config/$1" "$CORE_CONFIG"
-    cp "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1.json" "$CORE_CONFIG/network.json"
+    # Core Configuration
+    cp -r "${CORE_DIR}/packages/core/src/config/$1" "${CORE_CONFIG}"
+
+    # Network Configuration
+    cp -r "${CORE_DIR}/packages/crypto/src/networks/${CORE_TOKEN}/$1" "${CORE_CONFIG}"
+    rm -f "${CORE_CONFIG}/index.ts"
 }
 
 __core_configure_commander ()
