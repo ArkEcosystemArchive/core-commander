@@ -47,6 +47,8 @@ explorer_uninstall ()
 
     heading "Uninstalling Ark Explorer..."
 
+    cd "$commander_dir"
+
     sudo rm -rf "$EXPLORER_DIR"
 
     success "Uninstalled Ark Explorer!"
