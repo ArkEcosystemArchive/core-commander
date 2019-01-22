@@ -26,7 +26,7 @@ database_create ()
 
     wait_to_continue
 
-    local userExists=$(sudo -u postgres psql -c "SELECT * FROM pg_user WHERE username = '${ARK_DB_USERNAME}'" | grep -c "1 row")
+    local userExists=$(sudo -u postgres psql -c "SELECT * FROM pg_user WHERE pg_user.usename = '${ARK_DB_USERNAME}'" | grep -c "1 row")
 
     if [[ $userExists == 1 ]]; then
         read -p "The database user ${ARK_DB_USERNAME} already exists, do you want to overwrite it? [y/N] : " choice
