@@ -62,13 +62,13 @@ setup_environment ()
         . "$commander_config"
 
         # add core paths to ~/.commander
-        local corePaths=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+        local CORE_PATHS=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
-        local CORE_PATH_DATA=$(echo $corePaths | jq -r ".data")
-        local CORE_PATH_CONFIG=$(echo $corePaths | jq -r ".config")
-        local CORE_PATH_CACHE=$(echo $corePaths | jq -r ".cache")
-        local CORE_PATH_LOG=$(echo $corePaths | jq -r ".log")
-        local CORE_PATH_TEMP=$(echo $corePaths | jq -r ".temp")
+        local CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
+        local CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
+        local CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
+        local CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
+        local CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
 
         echo "CORE_PATH_DATA=${CORE_PATH_DATA}" >> "$commander_config" 2>&1
         echo "CORE_PATH_CONFIG=${CORE_PATH_CONFIG}" >> "$commander_config" 2>&1
@@ -85,7 +85,7 @@ setup_environment ()
     fi
 
     if [[ -e "$commander_config" ]]; then
-        local corePaths=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+        local CORE_PATHS=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
         if ! grep -q "CORE_REPO" "${commander_config}"; then
             echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
@@ -100,31 +100,31 @@ setup_environment ()
         fi
 
         if ! grep -q "CORE_PATH_DATA" "${commander_config}"; then
-            local CORE_PATH_DATA=$(echo $corePaths | jq -r ".data")
+            local CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
 
             echo "CORE_PATH_DATA=${CORE_PATH_DATA}" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_PATH_CONFIG" "${commander_config}"; then
-            local CORE_PATH_CONFIG=$(echo $corePaths | jq -r ".config")
+            local CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
 
             echo "CORE_PATH_CONFIG=${CORE_PATH_CONFIG}" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_PATH_CACHE" "${commander_config}"; then
-            local CORE_PATH_CACHE=$(echo $corePaths | jq -r ".cache")
+            local CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
 
             echo "CORE_PATH_CACHE=${CORE_PATH_CACHE}" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_PATH_LOG" "${commander_config}"; then
-            local CORE_PATH_LOG=$(echo $corePaths | jq -r ".log")
+            local CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
 
             echo "CORE_PATH_LOG=${CORE_PATH_LOG}" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_PATH_TEMP" "${commander_config}"; then
-            local CORE_PATH_TEMP=$(echo $corePaths | jq -r ".temp")
+            local CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
 
             echo "CORE_PATH_TEMP=${CORE_PATH_TEMP}" >> "$commander_config" 2>&1
         fi

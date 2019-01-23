@@ -151,10 +151,26 @@ __commander_configure ()
     sed -i -e "s/CORE_REPO=$CORE_REPO/CORE_REPO=$1/g" "$commander_config"
     sed -i -e "s/CORE_DIR=$CORE_DIR/CORE_DIR=$2/g" "$commander_config"
 
-    sed -i -e "s/CORE_TOKEN=$CORE_TOKEN/CORE_TOKEN=$5/g" "$commander_config"
-    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$6/g" "$commander_config"
-    sed -i -e "s/EXPLORER_REPO=$EXPLORER_REPO/EXPLORER_REPO=$7/g" "$commander_config"
-    sed -i -e "s/EXPLORER_DIR=$EXPLORER_DIR/EXPLORER_DIR=$8/g" "$commander_config"
+    sed -i -e "s/CORE_TOKEN=$CORE_TOKEN/CORE_TOKEN=$3/g" "$commander_config"
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$4/g" "$commander_config"
+
+    sed -i -e "s/EXPLORER_REPO=$EXPLORER_REPO/EXPLORER_REPO=$5/g" "$commander_config"
+    sed -i -e "s/EXPLORER_DIR=$EXPLORER_DIR/EXPLORER_DIR=$6/g" "$commander_config"
+
+    # update core paths in ~/.commander
+    local CORE_PATHS=$(node ../../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+
+    local NEW_CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
+    local NEW_CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
+    local NEW_CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
+    local NEW_CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
+    local NEW_CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
+
+    sed -i -e "s/CORE_PATH_DATA=$CORE_PATH_DATA/CORE_PATH_DATA=$NEW_CORE_PATH_DATA/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_CONFIG=$CORE_PATH_CONFIG/CORE_PATH_CONFIG=$NEW_CORE_PATH_CONFIG/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_CACHE=$CORE_PATH_CACHE/CORE_PATH_CACHE=$NEW_CORE_PATH_CACHE/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_LOG=$CORE_PATH_LOG/CORE_PATH_LOG=$NEW_CORE_PATH_LOG/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_TEMP=$CORE_PATH_TEMP/CORE_PATH_TEMP=$NEW_CORE_PATH_TEMP/g" "$commander_config"
 
     . "$commander_config"
 
