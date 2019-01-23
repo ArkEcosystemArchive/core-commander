@@ -172,6 +172,27 @@ __commander_configure ()
     sed -i -e "s/CORE_PATH_LOG=$CORE_PATH_LOG/CORE_PATH_LOG=$NEW_CORE_PATH_LOG/g" "$commander_config"
     sed -i -e "s/CORE_PATH_TEMP=$CORE_PATH_TEMP/CORE_PATH_TEMP=$NEW_CORE_PATH_TEMP/g" "$commander_config"
 
+    # move folders in case they changed
+    if [[ "$CORE_PATH_DATA" != "${NEW_CORE_PATH_DATA}" ]]; then
+        mv "${CORE_PATH_DATA}" "${NEW_CORE_PATH_DATA}"
+    fi
+
+    if [[ "$CORE_PATH_CONFIG" != "${NEW_CORE_PATH_CONFIG}" ]]; then
+        mv "${CORE_PATH_CONFIG}" "${NEW_CORE_PATH_CONFIG}"
+    fi
+
+    if [[ "$CORE_PATH_CACHE" != "${NEW_CORE_PATH_CACHE}" ]]; then
+        mv "${CORE_PATH_CACHE}" "${NEW_CORE_PATH_CACHE}"
+    fi
+
+    if [[ "$CORE_PATH_LOG" != "${NEW_CORE_PATH_LOG}" ]]; then
+        mv "${CORE_PATH_LOG}" "${NEW_CORE_PATH_LOG}"
+    fi
+
+    if [[ "$CORE_PATH_TEMP" != "${NEW_CORE_PATH_TEMP}" ]]; then
+        mv "${CORE_PATH_TEMP}" "${NEW_CORE_PATH_TEMP}"
+    fi
+
     . "$commander_config"
 
     success "The commander configuration has been updated."
