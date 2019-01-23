@@ -62,7 +62,7 @@ setup_environment ()
         . "$commander_config"
 
         # add core paths to ~/.commander
-        local CORE_PATHS=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+        local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
         local CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
         local CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
@@ -85,7 +85,7 @@ setup_environment ()
     fi
 
     if [[ -e "$commander_config" ]]; then
-        local CORE_PATHS=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+        local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
         if ! grep -q "CORE_REPO" "${commander_config}"; then
             echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1

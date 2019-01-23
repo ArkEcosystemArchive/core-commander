@@ -158,7 +158,7 @@ __commander_configure ()
     sed -i -e "s/EXPLORER_DIR=$EXPLORER_DIR/EXPLORER_DIR=$6/g" "$commander_config"
 
     # update core paths in ~/.commander
-    local CORE_PATHS=$(node ../../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+    local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
     local NEW_CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
     local NEW_CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
