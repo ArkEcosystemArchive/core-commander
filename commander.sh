@@ -107,7 +107,6 @@ main ()
 {
     setup_environment
     miscellaneous_install_updates
-    install_commander_dependencies
     commander_update
 
     if [[ -d "$CORE_DIR" ]]; then

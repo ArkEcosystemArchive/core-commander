@@ -85,6 +85,8 @@ setup_environment ()
     fi
 
     if [[ -e "$commander_config" ]]; then
+        install_commander_dependencies
+
         . "$commander_config"
 
         local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
