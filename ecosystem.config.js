@@ -31,8 +31,8 @@ module.exports = {
     min_uptime: '5m',
     kill_timeout: 30000,
     env: {
-        ARK_FORGER_BIP38: delegates.bip38,
-        ARK_FORGER_PASSWORD: getPasswordFromArgs()
+        CORE_FORGER_BIP38: delegates.bip38,
+        CORE_FORGER_PASSWORD: getPasswordFromArgs()
     }
   }, {
     name: 'ark-explorer',
