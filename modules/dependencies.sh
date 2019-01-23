@@ -84,7 +84,9 @@ install_nodejs_dependencies ()
     fi
 
     if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
-      sh -c "npm install dotenv"
+      sh -c "yarn add dotenv"
+    elif [[ ! -d "${commander_dir}/node_modules/env-paths" ]]; then
+      sh -c "yarn add env-paths"
     fi
 
     pm2_install
