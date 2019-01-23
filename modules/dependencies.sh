@@ -104,3 +104,16 @@ install_system_updates ()
 
     success "Installed system updates!"
 }
+
+install_commander_dependencies ()
+{
+    heading "Installing commander dependencies..."
+
+    if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
+      sh -c "yarn install"
+    elif [[ ! -d "${commander_dir}/node_modules/env-paths" ]]; then
+      sh -c "yarn install"
+    fi
+
+    success "Installed commander dependencies!"
+}
