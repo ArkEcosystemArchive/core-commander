@@ -2,7 +2,7 @@
 
 setup_environment_file ()
 {
-    local envFile="${CORE_DATA}/.env"
+    local envFile="${CORE_PATH_CONFIG}/.env"
 
     if [[ ! -e "${envFile}" ]]; then
         mkdir -p "${HOME}/.ark"
@@ -53,9 +53,7 @@ setup_environment ()
 
         echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
         echo "CORE_BRANCH=master" >> "$commander_config" 2>&1
-        echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
-        echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
-        echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1
+        echo "CORE_DIR=${HOME}/core" >> "$commander_config" 2>&1
         echo "CORE_TOKEN=ark" >> "$commander_config" 2>&1
         echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config" 2>&1
@@ -63,7 +61,22 @@ setup_environment ()
 
         . "$commander_config"
 
-        # create ~/.ark/.env
+        # add core paths to ~/.commander
+        local corePaths=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+
+        local CORE_PATH_DATA=$(echo $corePaths | jq -r ".data")
+        local CORE_PATH_CONFIG=$(echo $corePaths | jq -r ".config")
+        local CORE_PATH_CACHE=$(echo $corePaths | jq -r ".cache")
+        local CORE_PATH_LOG=$(echo $corePaths | jq -r ".log")
+        local CORE_PATH_TEMP=$(echo $corePaths | jq -r ".temp")
+
+        echo "CORE_PATH_DATA=${CORE_PATH_DATA}" >> "$commander_config" 2>&1
+        echo "CORE_PATH_CONFIG=${CORE_PATH_CONFIG}" >> "$commander_config" 2>&1
+        echo "CORE_PATH_CACHE=${CORE_PATH_CACHE}" >> "$commander_config" 2>&1
+        echo "CORE_PATH_LOG=${CORE_PATH_LOG}" >> "$commander_config" 2>&1
+        echo "CORE_PATH_TEMP=${CORE_PATH_TEMP}" >> "$commander_config" 2>&1
+
+        # create ${CORE_PATH_CONFIG}/.env
         setup_environment_file
         success "All system dependencies have been installed!"
 
@@ -72,6 +85,8 @@ setup_environment ()
     fi
 
     if [[ -e "$commander_config" ]]; then
+        local corePaths=$(node ../utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
+
         if ! grep -q "CORE_REPO" "${commander_config}"; then
             echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
         fi
@@ -84,12 +99,34 @@ setup_environment ()
             echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
         fi
 
-        if ! grep -q "CORE_DATA" "${commander_config}"; then
-            echo "CORE_DATA=${HOME}/.ark" >> "$commander_config" 2>&1
+        if ! grep -q "CORE_PATH_DATA" "${commander_config}"; then
+            local CORE_PATH_DATA=$(echo $corePaths | jq -r ".data")
+
+            echo "CORE_PATH_DATA=${CORE_PATH_DATA}" >> "$commander_config" 2>&1
         fi
 
-        if ! grep -q "CORE_CONFIG" "${commander_config}"; then
-            echo "CORE_CONFIG=${HOME}/.ark/config" >> "$commander_config" 2>&1
+        if ! grep -q "CORE_PATH_CONFIG" "${commander_config}"; then
+            local CORE_PATH_CONFIG=$(echo $corePaths | jq -r ".config")
+
+            echo "CORE_PATH_CONFIG=${CORE_PATH_CONFIG}" >> "$commander_config" 2>&1
+        fi
+
+        if ! grep -q "CORE_PATH_CACHE" "${commander_config}"; then
+            local CORE_PATH_CACHE=$(echo $corePaths | jq -r ".cache")
+
+            echo "CORE_PATH_CACHE=${CORE_PATH_CACHE}" >> "$commander_config" 2>&1
+        fi
+
+        if ! grep -q "CORE_PATH_LOG" "${commander_config}"; then
+            local CORE_PATH_LOG=$(echo $corePaths | jq -r ".log")
+
+            echo "CORE_PATH_LOG=${CORE_PATH_LOG}" >> "$commander_config" 2>&1
+        fi
+
+        if ! grep -q "CORE_PATH_TEMP" "${commander_config}"; then
+            local CORE_PATH_TEMP=$(echo $corePaths | jq -r ".temp")
+
+            echo "CORE_PATH_TEMP=${CORE_PATH_TEMP}" >> "$commander_config" 2>&1
         fi
 
         if ! grep -q "CORE_TOKEN" "${commander_config}"; then

@@ -21,13 +21,13 @@ core_configure ()
 
     local configured=false
 
-    if [[ -d "$CORE_CONFIG" ]]; then
+    if [[ -d "$CORE_PATH_CONFIG" ]]; then
         read -p "We found an Ark Core configuration, do you want to overwrite it? [y/N] : " choice
 
         if [[ "$choice" =~ ^(yes|y|Y) ]]; then
             __core_configure_pre
 
-            rm -rf "$CORE_CONFIG"
+            rm -rf "$CORE_PATH_CONFIG"
 
             __core_configure_network
 
@@ -127,11 +127,11 @@ __core_configure_network ()
 
 __core_configure_core ()
 {
-    if [[ ! -d "$CORE_DATA" ]]; then
-        mkdir "$CORE_DATA"
+    if [[ ! -d "$CORE_PATH_CONFIG" ]]; then
+        mkdir "$CORE_PATH_CONFIG"
     fi
 
-    cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_CONFIG}"
+    cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_PATH_CONFIG}"
 }
 
 __core_configure_commander ()
@@ -143,7 +143,7 @@ __core_configure_environment ()
 {
     heading "Creating Environment configuration..."
 
-    local envFile="${CORE_DATA}/.env"
+    local envFile="${CORE_PATH_CONFIG}/.env"
 
     touch "$envFile"
 
@@ -181,7 +181,7 @@ __core_configure_branch ()
     heading "Changing git branch..."
 
     sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$commander_config"
-    . "${CORE_DATA}/.env"
+    . "${CORE_PATH_CONFIG}/.env"
 
     cd "$CORE_DIR"
     git reset --hard | tee -a "$commander_log"

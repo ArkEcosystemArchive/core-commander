@@ -4,7 +4,7 @@ core_configure_database ()
 {
     ascii
 
-    local envFile="${CORE_DATA}/.env"
+    local envFile="${CORE_PATH_CONFIG}/.env"
 
     . "$envFile"
 

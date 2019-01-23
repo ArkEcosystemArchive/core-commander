@@ -2,7 +2,7 @@
 
 core_configure_hosts_and_ports ()
 {
-    local envFile="${CORE_DATA}/.env"
+    local envFile="${CORE_PATH_CONFIG}/.env"
 
     . "$envFile"
 

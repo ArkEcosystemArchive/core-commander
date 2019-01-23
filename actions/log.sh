@@ -4,7 +4,7 @@ utils_log ()
 {
     clear
 
-    local log_dir="${CORE_DATA}/logs/core/${CORE_NETWORK}/"
+    local log_dir="${CORE_PATH_LOGS}/${CORE_NETWORK}/"
 
     if [[ ! -d "$log_dir" ]]; then
         ascii

@@ -45,12 +45,12 @@ core_update ()
             # Make sure the git commit hash is not modified by a local yarn.lock
             git reset --hard | tee -a "$commander_log"
 
-            check_for_modifications "packages/core/src/config/${CORE_NETWORK}/plugins.js" "${CORE_CONFIG}/plugins.js"
+            check_for_modifications "packages/core/src/config/${CORE_NETWORK}/plugins.js" "${CORE_PATH_CONFIG}/plugins.js"
 
             # Make sure we have the latest peers lists and sources
-            rm -f "${CORE_CONFIG}/peers.json"
-            rm -f "${CORE_CONFIG}/peers_backup.json"
-            cp -f "${CORE_DIR}/packages/core/src/config/${CORE_NETWORK}/peers.json" "${CORE_CONFIG}/peers.json"
+            rm -f "${CORE_PATH_CONFIG}/peers.json"
+            rm -f "${CORE_PATH_CACHE}/${CORE_NETWORK}/peers.json"
+            cp -f "${CORE_DIR}/packages/core/src/config/${CORE_NETWORK}/peers.json" "${CORE_PATH_CONFIG}/peers.json"
 
             if [[ "$relay_on" = "On" ]]; then
                 relay_start

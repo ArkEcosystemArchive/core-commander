@@ -11,7 +11,7 @@ commander_configure_repo ()
         return
     fi
 
-    __commander_configure "$choice" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
+    __commander_configure "$choice" "$CORE_DIR" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 
     if [[ -d "$CORE_DIR" ]]; then
         warning "ARK Core will be pointed to ${CORE_REPO}. This will restart your node."
@@ -42,7 +42,7 @@ commander_configure_core_directory ()
         return
     fi
 
-    __commander_configure "$CORE_REPO" "$choice" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
+    __commander_configure "$CORE_REPO" "$choice" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 
     if [[ -d "$CORE_DIR" ]]; then
         warning "ARK Core will be stopped and moved to ${CORE_DIR}. This will restart your node."
@@ -58,34 +58,6 @@ commander_configure_core_directory ()
     fi
 }
 
-commander_configure_data_directory ()
-{
-    info "Current: $CORE_DATA"
-    read -p "Please enter the core data directory you would like to use: " choice
-
-    if [[ -z "$choice" ]]; then
-        error "You have entered an empty value. Please try again."
-
-        return
-    fi
-
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$choice" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
-}
-
-commander_configure_config_directory ()
-{
-    info "Current: $CORE_CONFIG"
-    read -p "Please enter the core config directory you would like to use: " choice
-
-    if [[ -z "$choice" ]]; then
-        error "You have entered an empty value. Please try again."
-
-        return
-    fi
-
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$choice" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
-}
-
 commander_configure_token ()
 {
     info "Current: $CORE_TOKEN"
@@ -97,7 +69,7 @@ commander_configure_token ()
         return
     fi
 
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$choice" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
+    __commander_configure "$CORE_REPO" "$CORE_DIR" "$choice" "$CORE_NETWORK" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
 
 commander_configure_token_network ()
@@ -111,7 +83,7 @@ commander_configure_token_network ()
         return
     fi
 
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$choice" "$EXPLORER_REPO" "$EXPLORER_DIR"
+    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_TOKEN" "$choice" "$EXPLORER_REPO" "$EXPLORER_DIR"
 }
 
 commander_configure_explorer_repo ()
@@ -125,7 +97,7 @@ commander_configure_explorer_repo ()
         return
     fi
 
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$choice" "$EXPLORER_DIR"
+    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_TOKEN" "$CORE_NETWORK" "$choice" "$EXPLORER_DIR"
 
     if [[ -d "$EXPLORER_DIR" ]]; then
         warning "ARK Explorer will be pointed to ${EXPLORER_REPO}. This will restart your explorer."
@@ -156,7 +128,7 @@ commander_configure_explorer_directory ()
         return
     fi
 
-    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_DATA" "$CORE_CONFIG" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$choice"
+    __commander_configure "$CORE_REPO" "$CORE_DIR" "$CORE_TOKEN" "$CORE_NETWORK" "$EXPLORER_REPO" "$choice"
 
     if [[ -d "$EXPLORER_DIR" ]]; then
         warning "ARK Explorer will be stopped and moved to ${EXPLORER_DIR}. This will restart your explorer."
@@ -178,8 +150,7 @@ __commander_configure ()
 
     sed -i -e "s/CORE_REPO=$CORE_REPO/CORE_REPO=$1/g" "$commander_config"
     sed -i -e "s/CORE_DIR=$CORE_DIR/CORE_DIR=$2/g" "$commander_config"
-    sed -i -e "s/CORE_DATA=$CORE_DATA/CORE_DATA=$3/g" "$commander_config"
-    sed -i -e "s/CORE_CONFIG=$CORE_CONFIG/CORE_CONFIG=$4/g" "$commander_config"
+
     sed -i -e "s/CORE_TOKEN=$CORE_TOKEN/CORE_TOKEN=$5/g" "$commander_config"
     sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$6/g" "$commander_config"
     sed -i -e "s/EXPLORER_REPO=$EXPLORER_REPO/EXPLORER_REPO=$7/g" "$commander_config"

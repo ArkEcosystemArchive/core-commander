@@ -1,6 +1,6 @@
 require('dotenv').config({ path: `${process.env.HOME}/.commander` })
 
-const delegates = require(`${process.env.CORE_CONFIG}/delegates.json`)
+const delegates = require(`${process.env.CORE_PATH_CONFIG}/delegates.json`)
 
 const getPasswordFromArgs = () => {
     const index = process.argv.indexOf('--password')
@@ -15,18 +15,14 @@ module.exports = {
   apps : [{
     name: 'ark-core-relay',
     script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
-    args: `relay --data ${process.env.CORE_DATA}
-                 --config ${process.env.CORE_CONFIG}
-                 --network ${process.env.CORE_NETWORK}`,
+    args: `relay --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000
   }, {
     name: 'ark-core-forger',
     script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
-    args: `forger --data ${process.env.CORE_DATA}
-                  --config ${process.env.CORE_CONFIG}
-                  --network ${process.env.CORE_NETWORK}`,
+    args: `forger --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000,
