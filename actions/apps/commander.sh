@@ -155,11 +155,35 @@ __commander_configure_environment ()
     local NEW_CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
     local NEW_CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
 
-    sed -i -e "s/CORE_PATH_DATA=$CORE_PATH_DATA/CORE_PATH_DATA=$NEW_CORE_PATH_DATA/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_CONFIG=$CORE_PATH_CONFIG/CORE_PATH_CONFIG=$NEW_CORE_PATH_CONFIG/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_CACHE=$CORE_PATH_CACHE/CORE_PATH_CACHE=$NEW_CORE_PATH_CACHE/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_LOG=$CORE_PATH_LOG/CORE_PATH_LOG=$NEW_CORE_PATH_LOG/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_TEMP=$CORE_PATH_TEMP/CORE_PATH_TEMP=$NEW_CORE_PATH_TEMP/g" "$commander_config"
+    if grep -q "CORE_PATH_DATA" "${commander_config}"; then
+        sed -i -e "s#CORE_PATH_DATA=${CORE_PATH_DATA}#CORE_PATH_DATA=${NEW_CORE_PATH_DATA}#g" "$commander_config"
+    else
+        echo "CORE_PATH_DATA=${NEW_CORE_PATH_DATA}" >> "$envFile" 2>&1
+    fi
+
+    if grep -q "CORE_PATH_CONFIG" "${commander_config}"; then
+        sed -i -e "s#CORE_PATH_CONFIG=${CORE_PATH_CONFIG}#CORE_PATH_CONFIG=${NEW_CORE_PATH_CONFIG}#g" "$commander_config"
+    else
+        echo "CORE_PATH_CONFIG=${NEW_CORE_PATH_CONFIG}" >> "$envFile" 2>&1
+    fi
+
+    if grep -q "CORE_PATH_CACHE" "${commander_config}"; then
+        sed -i -e "s#CORE_PATH_CACHE=${CORE_PATH_CACHE}#CORE_PATH_CACHE=${NEW_CORE_PATH_CACHE}#g" "$commander_config"
+    else
+        echo "CORE_PATH_CACHE=${NEW_CORE_PATH_CACHE}" >> "$envFile" 2>&1
+    fi
+
+    if grep -q "CORE_PATH_LOG" "${commander_config}"; then
+        sed -i -e "s#CORE_PATH_LOG=${CORE_PATH_LOG}#CORE_PATH_LOG=${NEW_CORE_PATH_LOG}#g" "$commander_config"
+    else
+        echo "CORE_PATH_LOG=${NEW_CORE_PATH_LOG}" >> "$envFile" 2>&1
+    fi
+
+    if grep -q "CORE_PATH_TEMP" "${commander_config}"; then
+        sed -i -e "s#CORE_PATH_TEMP=${CORE_PATH_TEMP}#CORE_PATH_TEMP=${NEW_CORE_PATH_TEMP}#g" "$commander_config"
+    else
+        echo "CORE_PATH_TEMP=${NEW_CORE_PATH_TEMP}" >> "$envFile" 2>&1
+    fi
 
     . "$commander_config"
 }
