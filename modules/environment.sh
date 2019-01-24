@@ -86,6 +86,7 @@ setup_environment ()
         echo "CORE_PATH_TEMP=${CORE_PATH_TEMP}" >> "$commander_config" 2>&1
 
         # create ${CORE_PATH_CONFIG}/.env
+        setup_environment_directories
         setup_environment_file
         success "All system dependencies have been installed!"
 
@@ -160,6 +161,7 @@ setup_environment ()
 
         . "$commander_config"
 
+        setup_environment_directories
         setup_environment_file
     fi
 }
