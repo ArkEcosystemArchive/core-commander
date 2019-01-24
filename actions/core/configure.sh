@@ -85,6 +85,15 @@ __core_configure_post ()
     git reset --hard | tee -a "$commander_log"
 }
 
+__core_configure_commander ()
+{
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
+
+    . "$commander_config"
+
+    setup_environment_directories
+}
+
 __core_configure_network ()
 {
     ascii
@@ -96,23 +105,23 @@ __core_configure_network ()
     select opt in "${validNetworks[@]}"; do
         case "$opt" in
             "mainnet")
+                __core_configure_commander "mainnet"
                 __core_configure_branch "master"
                 __core_configure_core "mainnet"
-                __core_configure_commander "mainnet"
                 __core_configure_environment "mainnet"
                 break
             ;;
             "devnet")
+                __core_configure_commander "devnet"
                 __core_configure_branch "develop"
                 __core_configure_core "devnet"
-                __core_configure_commander "devnet"
                 __core_configure_environment "devnet"
                 break
             ;;
             "testnet")
+                __core_configure_commander "testnet"
                 __core_configure_branch "develop"
                 __core_configure_core "testnet"
-                __core_configure_commander "testnet"
                 __core_configure_environment "testnet"
                 break
             ;;
@@ -132,11 +141,6 @@ __core_configure_core ()
     fi
 
     cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_PATH_CONFIG}"
-}
-
-__core_configure_commander ()
-{
-    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
 }
 
 __core_configure_environment ()
@@ -181,7 +185,7 @@ __core_configure_branch ()
     heading "Changing git branch..."
 
     sed -i -e "s/CORE_BRANCH=$CORE_BRANCH/CORE_BRANCH=$1/g" "$commander_config"
-    . "${CORE_PATH_CONFIG}/.env"
+    . "${commander_config}"
 
     cd "$CORE_DIR"
     git reset --hard | tee -a "$commander_log"
