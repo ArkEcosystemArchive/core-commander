@@ -39,7 +39,7 @@ setup_environment_file ()
     fi
 
     if ! grep -q "CORE_DB_DATABASE" "${envFile}"; then
-        echo "CORE_DB_DATABASE=CORE_${CORE_NETWORK}" >> "$envFile" 2>&1
+        echo "CORE_DB_DATABASE=ark_${CORE_NETWORK}" >> "$envFile" 2>&1
     fi
 
     . "${envFile}"

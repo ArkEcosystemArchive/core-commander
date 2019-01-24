@@ -33,7 +33,7 @@ core_configure_database ()
     if [[ ! -z "$inputDatabase" ]]; then
         sed -i -e "s/CORE_DB_DATABASE=$CORE_DB_DATABASE/CORE_DB_DATABASE=$inputDatabase/g" "$envFile"
     else
-        sed -i -e "s/CORE_DB_DATABASE=$CORE_DB_DATABASE/CORE_DB_DATABASE=CORE_${CORE_NETWORK}/g" "$envFile"
+        sed -i -e "s/CORE_DB_DATABASE=$CORE_DB_DATABASE/CORE_DB_DATABASE=ark_${CORE_NETWORK}/g" "$envFile"
     fi
 
     . "$envFile"
