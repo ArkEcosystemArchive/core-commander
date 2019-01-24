@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+setup_environment_directories ()
+{
+    mkdir -p "$CORE_PATH_DATA"
+    mkdir -p "$CORE_PATH_CONFIG"
+    mkdir -p "$CORE_PATH_CACHE"
+    mkdir -p "$CORE_PATH_LOG"
+    mkdir -p "$CORE_PATH_TEMP"
+}
+
 setup_environment_file ()
 {
     local envFile="${CORE_PATH_CONFIG}/.env"
@@ -64,11 +73,11 @@ setup_environment ()
         # add core paths to ~/.commander
         local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
 
-        local CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
-        local CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
-        local CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
-        local CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
-        local CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
+        CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
+        CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
+        CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
+        CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
+        CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
 
         echo "CORE_PATH_DATA=${CORE_PATH_DATA}" >> "$commander_config" 2>&1
         echo "CORE_PATH_CONFIG=${CORE_PATH_CONFIG}" >> "$commander_config" 2>&1
@@ -77,6 +86,7 @@ setup_environment ()
         echo "CORE_PATH_TEMP=${CORE_PATH_TEMP}" >> "$commander_config" 2>&1
 
         # create ${CORE_PATH_CONFIG}/.env
+        setup_environment_directories
         setup_environment_file
         success "All system dependencies have been installed!"
 
@@ -151,6 +161,7 @@ setup_environment ()
 
         . "$commander_config"
 
+        setup_environment_directories
         setup_environment_file
     fi
 }
