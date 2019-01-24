@@ -9,42 +9,6 @@ setup_environment_directories ()
     mkdir -p "$CORE_PATH_TEMP"
 }
 
-setup_environment_file ()
-{
-    local envFile="${CORE_PATH_CONFIG}/.env"
-
-    if [[ ! -e "${envFile}" ]]; then
-        mkdir -p "${CORE_PATH_CONFIG}"
-        touch "${envFile}"
-    fi
-
-    if ! grep -q "CORE_LOG_LEVEL" "${envFile}"; then
-        echo "CORE_LOG_LEVEL=debug" >> "$envFile" 2>&1
-    fi
-
-    if ! grep -q "CORE_DB_HOST" "${envFile}"; then
-        echo "CORE_DB_HOST=localhost" >> "$envFile" 2>&1
-    fi
-
-    if ! grep -q "CORE_DB_PORT" "${envFile}"; then
-        echo "CORE_DB_PORT=5432" >> "$envFile" 2>&1
-    fi
-
-    if ! grep -q "CORE_DB_USERNAME" "${envFile}"; then
-        echo "CORE_DB_USERNAME=${USER}" >> "$envFile" 2>&1
-    fi
-
-    if ! grep -q "CORE_DB_PASSWORD" "${envFile}"; then
-        echo "CORE_DB_PASSWORD=password" >> "$envFile" 2>&1
-    fi
-
-    if ! grep -q "CORE_DB_DATABASE" "${envFile}"; then
-        echo "CORE_DB_DATABASE=ark_${CORE_NETWORK}" >> "$envFile" 2>&1
-    fi
-
-    . "${envFile}"
-}
-
 setup_environment ()
 {
     set_locale
@@ -87,7 +51,6 @@ setup_environment ()
 
         # create ${CORE_PATH_CONFIG}/.env
         setup_environment_directories
-        setup_environment_file
         success "All system dependencies have been installed!"
 
         check_and_recommend_reboot
@@ -162,6 +125,5 @@ setup_environment ()
         . "$commander_config"
 
         setup_environment_directories
-        setup_environment_file
     fi
 }
