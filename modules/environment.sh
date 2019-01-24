@@ -14,7 +14,7 @@ setup_environment_file ()
     local envFile="${CORE_PATH_CONFIG}/.env"
 
     if [[ ! -e "${envFile}" ]]; then
-        mkdir -p "${HOME}/.ark"
+        mkdir -p "${CORE_PATH_CONFIG}"
         touch "${envFile}"
     fi
 
