@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-setup_environment_directories ()
-{
-    mkdir -p "$CORE_PATH_DATA"
-    mkdir -p "$CORE_PATH_CONFIG"
-    mkdir -p "$CORE_PATH_CACHE"
-    mkdir -p "$CORE_PATH_LOG"
-    mkdir -p "$CORE_PATH_TEMP"
-}
-
 setup_environment ()
 {
     set_locale

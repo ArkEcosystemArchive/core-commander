@@ -129,10 +129,13 @@ __core_configure_commander ()
 {
     sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
 
-    . "$commander_config"
-
     __commander_configure_environment "$1"
-    setup_environment_directories
+
+    mkdir -p "$CORE_PATH_DATA"
+    mkdir -p "$CORE_PATH_CONFIG"
+    mkdir -p "$CORE_PATH_CACHE"
+    mkdir -p "$CORE_PATH_LOG"
+    mkdir -p "$CORE_PATH_TEMP"
 }
 
 __core_configure_core ()
@@ -149,22 +152,22 @@ __core_configure_environment ()
     touch "$envFile"
 
     if [[ "$1" = "mainnet" ]]; then
-        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo"CORE_LOG_LEVEL=info" >> "$envFile" 2>&1
+        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo "CORE_LOG_LEVEL=info" >> "$envFile" 2>&1
     fi
 
     if [[ "$1" = "devnet" ]]; then
-        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo"CORE_LOG_LEVEL=debug" >> "$envFile" 2>&1
+        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo "CORE_LOG_LEVEL=debug" >> "$envFile" 2>&1
     fi
 
     if [[ "$1" = "testnet" ]]; then
-        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo"CORE_LOG_LEVEL=debug" >> "$envFile" 2>&1
+        grep -q '^CORE_LOG_LEVEL' "${envFile}" 2>&1 || echo "CORE_LOG_LEVEL=debug" >> "$envFile" 2>&1
     fi
 
-    grep -q '^CORE_DB_HOST' "${envFile}" 2>&1 || echo"CORE_DB_HOST=localhost" >> "$envFile" 2>&1
-    grep -q '^CORE_DB_PORT' "${envFile}" 2>&1 || echo"CORE_DB_PORT=5432" >> "$envFile" 2>&1
-    grep -q '^CORE_DB_USERNAME' "${envFile}" 2>&1 || echo"CORE_DB_USERNAME=${USER}" >> "$envFile" 2>&1
-    grep -q '^CORE_DB_PASSWORD' "${envFile}" 2>&1 || echo"CORE_DB_PASSWORD=password" >> "$envFile" 2>&1
-    grep -q '^CORE_DB_DATABASE' "${envFile}" 2>&1 || echo"CORE_DB_DATABASE=ark_$1" >> "$envFile" 2>&1
+    grep -q '^CORE_DB_HOST' "${envFile}" 2>&1 || echo "CORE_DB_HOST=localhost" >> "$envFile" 2>&1
+    grep -q '^CORE_DB_PORT' "${envFile}" 2>&1 || echo "CORE_DB_PORT=5432" >> "$envFile" 2>&1
+    grep -q '^CORE_DB_USERNAME' "${envFile}" 2>&1 || echo "CORE_DB_USERNAME=${USER}" >> "$envFile" 2>&1
+    grep -q '^CORE_DB_PASSWORD' "${envFile}" 2>&1 || echo "CORE_DB_PASSWORD=password" >> "$envFile" 2>&1
+    grep -q '^CORE_DB_DATABASE' "${envFile}" 2>&1 || echo "CORE_DB_DATABASE=ark_$1" >> "$envFile" 2>&1
 
     grep -q '^CORE_P2P_HOST' "$envFile" 2>&1 || echo 'CORE_P2P_HOST=0.0.0.0' >> "$envFile" 2>&1
 
