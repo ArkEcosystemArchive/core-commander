@@ -1,6 +1,6 @@
 require('dotenv').config({ path: `${process.env.HOME}/.commander` })
 
-const delegates = require(`${process.env.CORE_CONFIG}/delegates.json`)
+const delegates = require(`${process.env.CORE_PATH_CONFIG}/delegates.json`)
 
 const getPasswordFromArgs = () => {
     const index = process.argv.indexOf('--password')
@@ -14,27 +14,21 @@ const getPasswordFromArgs = () => {
 module.exports = {
   apps : [{
     name: 'ark-core-relay',
-    script: `${process.env.CORE_DIR}/packages/core/bin/ark`,
-    args: `relay --data ${process.env.CORE_DATA}
-                 --config ${process.env.CORE_CONFIG}
-                 --token ${process.env.CORE_TOKEN}
-                 --network ${process.env.CORE_NETWORK}`,
+    script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
+    args: `relay --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000
   }, {
     name: 'ark-core-forger',
-    script: `${process.env.CORE_DIR}/packages/core/bin/ark`,
-    args: `forger --data ${process.env.CORE_DATA}
-                  --config ${process.env.CORE_CONFIG}
-                  --token ${process.env.CORE_TOKEN}
-                  --network ${process.env.CORE_NETWORK}`,
+    script: `${process.env.CORE_DIR}/packages/core/dist/index.js`,
+    args: `forger --network ${process.env.CORE_NETWORK}`,
     max_restarts: 5,
     min_uptime: '5m',
     kill_timeout: 30000,
     env: {
-        ARK_FORGER_BIP38: delegates.bip38,
-        ARK_FORGER_PASSWORD: getPasswordFromArgs()
+        CORE_FORGER_BIP38: delegates.bip38,
+        CORE_FORGER_PASSWORD: getPasswordFromArgs()
     }
   }, {
     name: 'ark-explorer',
