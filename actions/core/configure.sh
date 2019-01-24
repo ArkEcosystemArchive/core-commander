@@ -85,15 +85,6 @@ __core_configure_post ()
     git reset --hard | tee -a "$commander_log"
 }
 
-__core_configure_commander ()
-{
-    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
-
-    . "$commander_config"
-
-    setup_environment_directories
-}
-
 __core_configure_network ()
 {
     ascii
@@ -134,13 +125,18 @@ __core_configure_network ()
     . "$commander_config"
 }
 
+__core_configure_commander ()
+{
+    sed -i -e "s/CORE_NETWORK=$CORE_NETWORK/CORE_NETWORK=$1/g" "$commander_config"
+
+    . "$commander_config"
+
+    setup_environment_directories
+}
+
 __core_configure_core ()
 {
-    if [[ ! -d "$CORE_PATH_CONFIG" ]]; then
-        mkdir "$CORE_PATH_CONFIG"
-    fi
-
-    cp -rf "${CORE_DIR}/packages/core/src/config/$1" "${CORE_PATH_CONFIG}"
+    cp -rf "${CORE_DIR}/packages/core/src/config/$1/." "${CORE_PATH_CONFIG}"
 }
 
 __core_configure_environment ()
