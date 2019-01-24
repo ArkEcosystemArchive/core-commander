@@ -143,6 +143,27 @@ commander_configure_explorer_directory ()
     fi
 }
 
+__commander_configure_environment ()
+{
+    . "$commander_config"
+
+    local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} $1)
+
+    local NEW_CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
+    local NEW_CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
+    local NEW_CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
+    local NEW_CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
+    local NEW_CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
+
+    sed -i -e "s/CORE_PATH_DATA=$CORE_PATH_DATA/CORE_PATH_DATA=$NEW_CORE_PATH_DATA/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_CONFIG=$CORE_PATH_CONFIG/CORE_PATH_CONFIG=$NEW_CORE_PATH_CONFIG/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_CACHE=$CORE_PATH_CACHE/CORE_PATH_CACHE=$NEW_CORE_PATH_CACHE/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_LOG=$CORE_PATH_LOG/CORE_PATH_LOG=$NEW_CORE_PATH_LOG/g" "$commander_config"
+    sed -i -e "s/CORE_PATH_TEMP=$CORE_PATH_TEMP/CORE_PATH_TEMP=$NEW_CORE_PATH_TEMP/g" "$commander_config"
+
+    . "$commander_config"
+}
+
 __commander_configure ()
 {
     rm "$commander_config"
@@ -158,19 +179,7 @@ __commander_configure ()
     sed -i -e "s/EXPLORER_DIR=$EXPLORER_DIR/EXPLORER_DIR=$6/g" "$commander_config"
 
     # update core paths in ~/.commander
-    local CORE_PATHS=$(node ${commander_dir}/utils/paths.js ${CORE_TOKEN} ${CORE_NETWORK})
-
-    local NEW_CORE_PATH_DATA=$(echo $CORE_PATHS | jq -r ".data")
-    local NEW_CORE_PATH_CONFIG=$(echo $CORE_PATHS | jq -r ".config")
-    local NEW_CORE_PATH_CACHE=$(echo $CORE_PATHS | jq -r ".cache")
-    local NEW_CORE_PATH_LOG=$(echo $CORE_PATHS | jq -r ".log")
-    local NEW_CORE_PATH_TEMP=$(echo $CORE_PATHS | jq -r ".temp")
-
-    sed -i -e "s/CORE_PATH_DATA=$CORE_PATH_DATA/CORE_PATH_DATA=$NEW_CORE_PATH_DATA/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_CONFIG=$CORE_PATH_CONFIG/CORE_PATH_CONFIG=$NEW_CORE_PATH_CONFIG/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_CACHE=$CORE_PATH_CACHE/CORE_PATH_CACHE=$NEW_CORE_PATH_CACHE/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_LOG=$CORE_PATH_LOG/CORE_PATH_LOG=$NEW_CORE_PATH_LOG/g" "$commander_config"
-    sed -i -e "s/CORE_PATH_TEMP=$CORE_PATH_TEMP/CORE_PATH_TEMP=$NEW_CORE_PATH_TEMP/g" "$commander_config"
+    __commander_configure_environment "${CORE_NETWORK}"
 
     # move folders in case they changed
     if [[ "$CORE_PATH_DATA" != "${NEW_CORE_PATH_DATA}" ]]; then

@@ -131,6 +131,7 @@ __core_configure_commander ()
 
     . "$commander_config"
 
+    __commander_configure_environment "$1"
     setup_environment_directories
 }
 
