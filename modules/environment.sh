@@ -2,6 +2,8 @@
 
 setup_environment ()
 {
+    rm -f "${commander_dir}/package-lock.json"
+
     set_locale
 
     if [[ ! -f "$commander_config" ]]; then

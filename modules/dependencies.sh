@@ -83,8 +83,6 @@ install_nodejs_dependencies ()
         success "Installed node.js dependencies!"
     fi
 
-    rm -f "${commander_dir}/package-lock.json"
-    
     if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
       sh -c "yarn add dotenv"
     elif [[ ! -d "${commander_dir}/node_modules/env-paths" ]]; then
