@@ -17,7 +17,7 @@ setup_environment ()
 
         echo "CORE_REPO=https://github.com/ArkEcosystem/core" >> "$commander_config" 2>&1
         echo "CORE_BRANCH=master" >> "$commander_config" 2>&1
-        echo "CORE_DIR=${HOME}/core" >> "$commander_config" 2>&1
+        echo "CORE_DIR=${HOME}/ark-core" >> "$commander_config" 2>&1
         echo "CORE_TOKEN=ark" >> "$commander_config" 2>&1
         echo "CORE_NETWORK=mainnet" >> "$commander_config" 2>&1
         echo "EXPLORER_REPO=https://github.com/ArkEcosystem/explorer" >> "$commander_config" 2>&1
