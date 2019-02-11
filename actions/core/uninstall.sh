@@ -21,9 +21,25 @@ core_uninstall ()
     sudo rm -rf "$CORE_DIR"
     success "Deleted Data!"
 
+    heading "Deleting Data..."
+    sudo rm -rf "$CORE_PATH_DATA"
+    success "Deleted Data!"
+
     heading "Deleting Configuration..."
-    sudo rm -rf "$CORE_DATA"
+    sudo rm -rf "$CORE_PATH_CONFIG"
     success "Deleted Configuration!"
+
+    heading "Deleting Cache..."
+    sudo rm -rf "$CORE_PATH_CACHE"
+    success "Deleted Cache!"
+
+    heading "Deleting Logs..."
+    sudo rm -rf "$CORE_PATH_LOG"
+    success "Deleted Logs!"
+
+    heading "Deleting Temp..."
+    sudo rm -rf "$CORE_PATH_TEMP"
+    success "Deleted Temp!"
 
     success "Uninstalled Ark Core!"
 

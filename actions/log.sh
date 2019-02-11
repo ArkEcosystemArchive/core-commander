@@ -4,9 +4,7 @@ utils_log ()
 {
     clear
 
-    local log_dir="${CORE_DATA}/logs/core/${CORE_NETWORK}/"
-
-    if [[ ! -d "$log_dir" ]]; then
+    if [[ ! -d "$CORE_PATH_LOG" ]]; then
         ascii
 
         error "Log folder does not exist."
@@ -14,9 +12,9 @@ utils_log ()
         return 1
     fi
 
-    local log_file=$(ls -t "${log_dir}" | head -n 1)
+    local log_file=$(ls -t "${CORE_PATH_LOG}" | head -n 1)
 
-    if [[ ! -e "${log_dir}/${log_file}" ]]; then
+    if [[ ! -e "${CORE_PATH_LOG}/${log_file}" ]]; then
         ascii
 
         error "Log file does not exist."
@@ -27,6 +25,6 @@ utils_log ()
 
         trap : INT
 
-        tail -fn 50 "${log_dir}/${log_file}"
+        tail -fn 50 "${CORE_PATH_LOG}/${log_file}"
     fi
 }

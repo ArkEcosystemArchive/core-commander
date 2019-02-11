@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DEPENDENCIES_PROGRAMS=("build-essential libcairo2-dev pkg-config libtool autoconf automake python git curl libpq-dev jq")
-DEPENDENCIES_NODEJS=("pm2 lerna")
+DEPENDENCIES_NODEJS=("pm2")
 
 apt_package_installed()
 {
@@ -84,7 +84,9 @@ install_nodejs_dependencies ()
     fi
 
     if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
-      sh -c "npm install dotenv"
+      sh -c "yarn add dotenv"
+    elif [[ ! -d "${commander_dir}/node_modules/env-paths" ]]; then
+      sh -c "yarn add env-paths"
     fi
 
     pm2_install
@@ -101,4 +103,17 @@ install_system_updates ()
     sudo apt-get autoclean -yq | tee -a "$commander_log"
 
     success "Installed system updates!"
+}
+
+install_commander_dependencies ()
+{
+    heading "Installing commander dependencies..."
+
+    if [[ ! -d "${commander_dir}/node_modules/dotenv" ]]; then
+      sh -c "yarn install"
+    elif [[ ! -d "${commander_dir}/node_modules/env-paths" ]]; then
+      sh -c "yarn install"
+    fi
+
+    success "Installed commander dependencies!"
 }
