@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 1.0.0 - 2019-02-11
+
 ### Changed
+
+- All locations and commands are now assuming a Core 2.1 installation with TypeScript
 - Moved all app configuration to `ecosystem.config.js` [See also](https://pm2.io/doc/en/runtime/guide/ecosystem-file/)
 - A new npm dependency `dotenv` has been added. When updating from a previous  
 version it is necessary to install it by executing `sudo npm install -g dotenv`  
@@ -27,6 +31,7 @@ followed by `npm link dotenv` inside the commander directory.
 - Redis
 
 ## 0.2.0 - 2018-06-19
+
 ### Added
 - Log level configuration via `.env`
 - Host configuration via `.env`
@@ -55,5 +60,6 @@ followed by `npm link dotenv` inside the commander directory.
 - Container environment check
 
 ## 0.1.0 - 2018-06-14
+
 ### Added
 - initial release
